@@ -1,0 +1,69 @@
+@charset "utf-8";
+.main{ width:1300px; height:726px; background:url(../images/main_bg3.gif) no-repeat 0 85px;padding-top:75px;}
+
+/*分类1*/ 
+.nav_classify{padding:200px 0 0 63px; background:url(../images/cars.png) 14px 182px  no-repeat; width:816px; height:374px; position:relative}
+.nav_classify li{ float:left;}
+.nav_classify li a{ display:block;}
+
+/*早教car1*/
+.nav_classify .nc1{ position:absolute; left:14px; top:320px; z-index:3}
+.nav_classify .nc1 a{width:307px; height:235px;}
+.nav_classify .nc1 a:hover{ background:url(../images/car1_hover.gif) no-repeat }
+
+/*电子书car2*/
+.nav_classify .nc2{ position:absolute; left:232px; top:182px; z-index:2}
+.nav_classify .nc2 a{width:294px; height:266px;}
+.nav_classify .nc2 a:hover{ background:url(../images/car2_hover.gif) no-repeat }
+
+/*小课堂car3*/
+.nav_classify .nc3{ position:absolute; left:521px; top:275px; z-index:1}
+.nav_classify .nc3 a{ width:307px; height:208px;}
+.nav_classify .nc3 a:hover{ background:url(../images/car3_hover.gif) no-repeat}
+
+/*分类2*/ 
+.nav_age{ margin-right:80px; margin-top:245px; text-align:right; display: inline}
+.nav_age li { width:106px; height:35px; margin-bottom:11px;font-family: "DFHaibaoW12";}
+.nav_age li a{ color:#ffffff; font-size:21px; font-weight:bold; line-height:32px;}
+.nav_age li a:hover{ color:#000000; }
+
+/*logiin*/
+.box_login{ width:541px; height:445px;-webkit-border-radius:15px;-moz-border-radius:15px; background:#fbd206}
+.login_title{ width:491px; height:80px;-webkit-border-radius:15px;-moz-border-radius:15px; background:#fb5f06; font-size:37px; color:#ffffff; text-shadow:4px 4px 4px #ce4104; line-height:80px; padding-left:50px; margin-bottom:25px;}
+.login_btn{-webkit-border-radius:15px;-moz-border-radius:15px; background:#f1592a; font-size:47px; color:#ffffff;-webkit-box-shadow:2px 3px 5px #c6a204;-moz-box-shadow:2px 4px 3px #c6a204; width:157px; height:84px; margin:30px 50px 0 50px;}
+	/*一行输入框*/
+.input_text{ color:#fb5f06; font-size:20px; margin-bottom:10px; margin-left:50px; white-space:pre}
+.input_text input{-webkit-border-radius:15px;-moz-border-radius:15px; background:#ffffff; border:none; width:334px; height:31px; line-height:31px; color:#898989; white-space::normal}
+/*tips*/
+.tips{ margin-left:50px; font-size:13px; color:#8c4401;}
+.tips input{ margin-right:10px;}
+
+/**/
+  .black_overlay{display: none;position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000000;
+            z-index: 1;
+            -moz-opacity: 0.4;
+            opacity: .45;
+            filter: alpha(opacity=45);
+        }
+
+#loginDiv{
+       position: absolute;
+            top: 200px;
+            left: 400px;
+            border: 8px solid #09c;
+            display: none;
+            width: 400px;
+            height: 250px;
+            background: #e3f0f9;
+            color: black;
+            z-index: 2;
+            text-align: center;
+            overflow:auto;     
+
+        }
+

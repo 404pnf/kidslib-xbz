@@ -1,0 +1,73 @@
+@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;vertical-align:baseline;}
+/*字体授权*/
+/*@font-face{
+	font-family: 'DFHaibaoW121';
+	src:url('../fonts/huakangW12.eot');
+	}*/
+/*@font-face{
+	font-family: 'DFHaibaoW12';
+	src:url('../fonts/huakangW12.TTF' )format('truetype');
+	}*/
+/*@font-face{
+	font-family: 'mrosoftYHB';
+	src: url('../fonts/MSYHBD.TTF')format('truetype');
+	}*/
+@font-face {
+	font-family: 'DFHaibaoW12';
+	src: url('../fonts/huakangW12.eot'); /* IE9 Compat Modes */
+	src: url('../fonts/huakangW12.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../fonts/huakangW12.TTF')  format('truetype') /* Safari, Android, iOS */
+   }
+ul li{ list-style:none}
+a{ text-decoration:none}
+a,button{ cursor:pointer}
+img{ border:none}
+.fclear{*zoom:1;clear:both}										 /*清除浮动 */
+.fleft{float:left}                                       /*左浮动 */
+.fright{float:right}                                     /*右浮动 */
+.fcenter{ margin:0 auto; text-align:center;} 	 	 	 /*元素居中*/
+.eborder{border:1px solid #ddd}                          /*1px的实边*/
+.first{margin-left:0;padding-left:0}                     /*第一个元素左边距0*/
+.last{margin-right:0;padding-right:0}                    /*最后一个元素右边距0*/ 
+.cborder{border:none!important;}                         /*去除元素边*/
+.ehide{display:none;}                                    /*隐藏元素*/ 
+.eshow{display: block;}                                  /*显示元素*/ 
+.font_DFHaibaoW12{font-family: "DFHaibaoW12","DFHaibaoW121";}
+.font_mrosoftYHB{font-family: "mrosoftYHB";}
+.oh{ overflow:hidden}
+
+
+
+
+.wrapper{ width:1300px; height:816px; margin:0 auto; background:#fbfae2; position:relative}
+.repeat_bg{ background:url(../images/repeat_bg.jpg)}
+/*top*/
+.top{ width:1260px; height:101px; background:url(../images/top_bg.png) repeat-x; position:absolute; top:0; left:0; padding-right:40px; z-index:1000}
+.top_login{ height:22px; line-height:22px;}
+/*登录后*/
+	.top_login img { margin-right:10px; margin-top:3px;}
+.title{ margin:5px auto 0 auto;}
+.top_login a{ color:#7b2e00; font-size:13px; margin-right:20px; font-family:"mrosoftYHB"}
+.top_login a:hover{ color:#ffffff;}
+
+/*user下拉*/
+.user_name{ position:relative; background: url(../images/arrow_black.jpg) no-repeat right center; padding-right:10px;}
+.user_nav{ width:105px;background:url(../images/link_bottom.jpg) no-repeat bottom;  padding-bottom:15px; position:absolute; right:0; top:22px; display:none}
+.user_nav li{width:100%; height:25px; background:url(../images/link_bg.jpg) repeat-y; line-height:25px; text-align:center}
+.user_nav li a{width:100%; color:#ffffff; font-size:16px; text-decoration:underline;text-align:center; display:block}
+.user_nav li a:hover{ text-decoration:none}
+
+/*top区左边*/
+.title_left{ position:absolute; left:60px; top:30px;}
+	a.title_left{ font-size:29px; color:#f26522;-webkit-text-stroke-color: #ffffff;-webkit-text-stroke-width: 2px; font-weight:bold; }
+	.title_left a{ color:#7b2e00; font-size:16px;padding-left:40px; height:40px; line-height:40px; margin-right:40px; display:block}
+	.title_left a.back{ background:url(../images/back.jpg) no-repeat 0 center; }
+	.title_left a.home{ background:url(../images/home.jpg) no-repeat 0 center; }
+	.title_left a.back:hover{ color:#ffffff  }
+	.title_left a.home:hover{ color:#ffffff }
+.title_name{ color:#ffffff; font-size:37px; margin:5px auto 0 auto; text-align:center; background:url(../images/logo-img.png) no-repeat right center; padding-right:60px; width:150px; height:51px; display:block;text-shadow:2px 3px 5px #eeb500;}
+/*bottom*/
+.bottom{ width:100%; height:105px; position:absolute; bottom:0; left:0; background:url(../images/bottom_bg.png) repeat-x;}
+.fltrp_logo{ background:url(../images/fltrp_logo.jpg); width:247px; height:62px; margin:35px 60px 0 0;}
+

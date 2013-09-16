@@ -1,0 +1,47 @@
+@charset "utf-8";
+/*-------------------英语小课堂单元首页-------------------*/
+.unit_bg{ width:1300px; height:726px;background:url(../images/Unit_bg.png) 0 130px no-repeat;}
+.unit_nav_classify { position:relative; margin-left:93px; padding-top:245px;}
+.unit_nav_classify li a{ font-family: "DFHaibaoW12"; color:#f26522; font-size:25px; padding-left:70px; display:block; position:absolute}
+.unit_nav_classify a:hover{ color:#ed1c24}
+	/*1*/
+	a.unit_m1{ background:url(../images/unit_m1.png) no-repeat; width:118px; height:96px; line-height:96px; left:219px}
+	a.unit_m1:hover{ background:url(../images/unit_m1o.png) no-repeat;}
+	/*2*/
+	a.unit_m2{ background:url(../images/unit_m2.png) no-repeat; width:152px; height:97px; line-height:97px; top:330px; left:219px;}
+	a.unit_m2:hover{ background:url(../images/unit_m2o.png) no-repeat;}
+	/*3*/
+	a.unit_m3{ background:url(../images/unit_m3.png) no-repeat; width:222px; height:129px; line-height:129px;top:430px; left:219px;}
+	a.unit_m3:hover{ background:url(../images/unit_m3o.png) no-repeat;}
+	/*4*/
+	a.unit_m4{ background:url(../images/unit_m4.png) no-repeat; width:152px; height:119px; line-height:119px; top:550px;}
+	a.unit_m4:hover{ background:url(../images/unit_m4o.png) no-repeat;}
+	/*5*/
+	a.unit_m5{ background:url(../images/unit_m5.png) no-repeat; width:234px; height:179px; line-height:179px; left:550px; top:400px; padding-left:40px!important}
+	a.unit_m5:hover{ background:url(../images/unit_m5o.png) no-repeat;}
+	/*6*/
+	a.unit_m6{ background:url(../images/unit_m6.png) no-repeat; width:157px; height:273px; line-height:273px; left:1000px; top:130px;padding-left:30px!important}
+	a.unit_m6:hover{ background:url(../images/unit_m6o.png) no-repeat;}
+	
+/*-------------------电子书播放器-------------------*/
+/*page pre next*/
+.ebook_pre,
+.ebook_next{ display:block; width:23px; height:26px; position:absolute; top:50%;}
+a.ebook_pre{ background:url(../images/ebook_pre.png) no-repeat; left:50px;}
+a.ebook_pre:hover{ background:url(../images/ebook_pre_over.png)}
+a.ebook_next{ background:url(../images/ebook_next.png) no-repeat; right:50px;}
+a.ebook_next:hover{ background:url(../images/ebook_next_over.png);}
+.ebook_main{ display:block}
+
+
+/*ebook*/
+.ebook_main{ width:1244px; height:748px; margin:0 auto; background:url(../images/ebook01.jpg) no-repeat}
+
+/*操作*/
+.ebook_op{ height:47px; width:100%; background:url(../images/ebook_op_bg.jpg) repeat-x;}
+.ebook_play,
+.ebook_collect,
+.ebook_volume,
+.ebook_ce{ display:block; float:left; margin-right:10px; margin-top:5px; width:74px; height:33px; line-height:33px; background:#333;}
+.ebook_play{ margin-left:150px;}
+.ebook_page{ width:163px; height:35px; background:#666; display:block; float:right; margin-top:5px; margin-right:120px;}
