@@ -6,7 +6,10 @@
 	<link  href="styles/test.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="flowplayer-3.2.12.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<!--[if lte IE 6]><script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>    <script type="text/javascript">        DD_belatedPNG.fix('.pngFix');</script><![endif]-->
+	<!--[if lte IE 6]>
+		<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+		<script type="text/javascript">DD_belatedPNG.fix('.pngFix');</script>
+	<![endif]-->
 	<script type="text/javascript">
 		function onclick_right(){
 			var an = document.getElementById("answer");
@@ -20,66 +23,64 @@
 </head>
 
 <body>
-<div class="wrapper repeat_bg">
-<!-- 	顶部开始	 -->
-	<div class="top pngFix">
-        <div class="top_login"></div>
-        <div class="title">
-            <a href="#" class="font_DFHaibaoW12 title_left">Unit-1 Hello</a>
-            <a href="#" class="title_name font_DFHaibaoW12">小测试 </a>
-        </div>
-    </div>
-<!-- 	顶部结束	 -->
-<!-- 	题目开始	 -->
-	<div class="main">
-    	<div class="word_box fleft">
-            <ul>
-                <li><a href="#" onclick="onclick_right();">happy</a></li>
-                <li><a href="#" onclick="onclick_wrong();">sad</a></li>
-                <li><a href="#" onclick="onclick_wrong();">happy</a></li>
-                <li><a href="#" onclick="onclick_right();">sad</a></li>
-            </ul>
-            <div class="fclear oh">
-                <a href="#" class="pre font_mrosoftYHB fleft">上一题</a>
-                <a href="#" class="next font_mrosoftYHB fleft">下一题</a>
-            </div>
-        </div>
+	<div class="wrapper repeat_bg">
+		<div class="top pngFix"> <!-- 	顶部开始	 -->
+			<div class="top_login"></div>
+			<div class="title">
+				<a href="#" class="font_DFHaibaoW12 title_left">Unit-1 Hello</a>
+				<a href="#" class="title_name font_DFHaibaoW12">小测试 </a>
+			</div>
+		</div> <!-- 	顶部结束	 -->
 
-        <div class="question fleft">
-        	<!-- set up player container  -->
-			<div id="player" style="display:block;width:630px;height:590px;"></div>
-        </div>
-        <!--answer：默认状态 answer_right：答对了 answer_wrong:答错了-->
-        <div class="answer fleft" id="answer"></div>
-        <div class="op_box fleft">
-            <div class="oh">
-            </div>
-        </div>
-    </div>
-<!-- 	题目结束	 -->
+		<div class="main">		<!-- 	题目开始	 -->
+			<div class="word_box fleft">
+				<ul>
+					<li><a href="#" onclick="onclick_right();">happy</a></li>
+					<li><a href="#" onclick="onclick_wrong();">sad</a></li>
+					<li><a href="#" onclick="onclick_wrong();">happy</a></li>
+					<li><a href="#" onclick="onclick_right();">sad</a></li>
+				</ul>
+				<div class="fclear oh">
+					<a href="#" class="pre font_mrosoftYHB fleft">上一题</a>
+					<a href="#" class="next font_mrosoftYHB fleft">下一题</a>
+				</div>
+			</div>
 
-	<div class="bottom">
-        <div class="fltrp_logo fright"></div>
-    </div>
-</div>
-<script>
-	$f("player", "flowplayer-3.2.16.swf", {
-		clip: {
-			url: "xbz1au2_game.mp3",
-			// this style of configuring the cover image was added in audio
-			// plugin version 3.2.3
-			coverImage: { url: "3BU8_family.jpg",
-				scaling: 'orig' },
-			autoPlay: true
-		}
-	   plugins: {
-			controls: {
-			fullscreen: false,
-			height: 30,
-			autoHide: false
+			<div class="question fleft"> <!-- 题目的mp3和图片 -->
+				<!-- set up player container  -->
+				<div id="player" style="display:block;width:630px;height:590px;"></div>
+			</div>  <!-- 题目的mp3和图片结束 -->
+
+			<!-- answer：默认状态 answer_right：答对了 answer_wrong:答错了-->
+			<div class="answer fleft" id="answer"></div>
+			<div class="op_box fleft">
+				<div class="oh"></div>
+			</div>
+		</div> <!-- 	题目结束	 -->
+
+		<div class="bottom"> <!-- 	外研社标志 footer	 -->
+			<div class="fltrp_logo fright"></div>
+		</div> <!-- 	外研社标志 footer结束	 -->
+
+	</div>
+	<script>
+		$f("player", "flowplayer-3.2.16.swf", {
+			clip: {
+				url: "xbz1au2_game.mp3",
+				// this style of configuring the cover image was added in audio
+				// plugin version 3.2.3
+				coverImage: { url: "3BU8_family.jpg",
+					scaling: 'orig' },
+				autoPlay: true
 			}
-		},
-	});
-</script>
+		   plugins: {
+				controls: {
+				fullscreen: false,
+				height: 30,
+				autoHide: false
+				}
+			},
+		});
+	</script>
 </body>
 </html>
