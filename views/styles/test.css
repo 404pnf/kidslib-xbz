@@ -1,0 +1,20 @@
+@charset "utf-8";
+.wrapper{ background:#7acdc8}
+/*word list*/
+.word_box{ width:290px;}
+.word_box ul{ padding-top:108px; margin-left:60px;}
+.word_box li a{ width:184px; height:65px; background:url(../images/word.jpg); display:block; font-family:Arial; font-size:33px; line-height:55px; color:#ffffff; padding-left:40px;}
+.word_box li a:hover{ background:url(../images/word_s.jpg)}
+/*question_box*/
+.question{ width:630px; height:590px; background:#fff9cf;margin-top:80px; border:24px solid #13a89e; margin-right:10px;}
+/*anwers*/
+.answer{ width:311px; height:451px; background:url(../images/answer_1.jpg) no-repeat bottom left; margin-top:40px;}
+.answer_right{ background:url(../images/answer_right.gif) no-repeat  bottom left!important;}
+.answer_wrong{ background:url(../images/answer_wrong.gif) no-repeat  bottom left!important;}
+/*drag_box*/
+.op_box{ width:276px; height:208px; background:url(../images/op_box.jpg) no-repeat; padding-top:65px;}
+.next,.pre,.again{ width:87px; height:30px; color:#603913; display:block; line-height:30px; font-size:16px; margin-left:30px;}
+.again{ background:url(../images/btn_green.jpg); border:none}
+.pre{ background:url(../images/pre.jpg);padding-left:25px; width:62px; margin-top:65px;}
+.next{ background:url(../images/next.jpg);padding-left:10px; width:77px; margin-top:65px;}
+.volume{ margin-left:10px;}

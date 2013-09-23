@@ -1,0 +1,39 @@
+@charset "utf-8";
+.left_bookshelf{ width:218px; height:579px; display:block; margin-left:50px;}
+.left_classitfy{ position:relative; padding-top:60px; background:url(../images/bookshelf_left_1.png) no-repeat right top;}
+	.left_classitfy ul li a{ width:165px; height:35px; display:block; line-height:38px; padding-left:22px;font-family: "DFHaibaoW12"; color:#ffffff; font-size:18px; margin-bottom:3px;}
+	.left_classitfy ul li a{ background:url(../images/bookrack_left.jpg) no-repeat}
+	.left_classitfy ul li a:hover{background:url(../images/bookrack_left_s.jpg) no-repeat}
+	.left_classitfy ul li a.left_classitfy_nav_s{ background:url(../images/bookrack_left_s.jpg) no-repeat;}
+	.left_classitfy_img{ position:absolute; top:0; right:0;}
+.left_bookmark{ background:url(../images/bookrack_collect_left.jpg) no-repeat;}
+.bookshelf_main_bg{ background:url(../images/bookshelf.png) no-repeat; width:1008px; height:613px;}
+.bookshelf_main_bg_1{ background:url(../images/bookshelf_1.png) no-repeat!important;}
+.left_bookshelf,.bookshelf_main_bg{ margin-top:105px;}
+
+/*top clssify*/
+.top_bookshelf{ width:935px; height:65px; line-height:65px; display:block}
+.top_bookshelf li { float:left}
+.top_bookshelf li a{ background:url(../images/bookrack.jpg) no-repeat; display:block; width:167px; height:50px; font-size:23px; color:#ffffff; font-family:"DFHaibaoW12"; line-height:50px; text-align:center; margin-top:8px; margin-left:60px;}
+.top_bookshelf li a:hover{ background:url(../images/bookrack_s.jpg)}
+.top_bookshelf li a.top_nav_s{ background:url(../images/bookrack_s.jpg) no-repeat}
+/*booklist*/
+ul.book_list li:nth-of-type(7) { margin-left:22px;}
+ul.book_list li:nth-of-type(13) { margin-left:32px;}
+.book_list{ width:870px; margin-top:15px;}
+.book_list li{  float:left; position:relative; display:block}
+.book_list li img{  display:block; float:left; position:relative; margin-right:10px; margin-bottom:25px; width:126px; height:119px;}
+.book_list li span{ position: absolute;left: 40px; top: 90px; font-family:"DFHaibaoW12"; font-size:18px; color:#ffffff; z-index:999;}
+.book_list li a{ position: absolute;right: 15px; bottom: 30px; width:22px; height:22px; display:block; background:url(../images/close_02.png)}/*收藏书删除*/
+.book_list li div{position: absolute; display: none; left:85px; top:10px;width:386px; height:343px; display:none ; z-index:1000}
+.book_list li div a{ font-family:"DFHaibaoW12"; font-size:25px;padding-top:250px; text-align:center; color:#ffffff; display:block; width:295px; padding-left:60px; line-height:150%;}
+.classify_name{ position:absolute; bottom:200px; right:65px; font-size:22px; font-family:"DFHaibaoW12"; color:#ffffff;}
+
+
+/*page*/
+.page{ display:block; width:340px; height:40px; background:#333333; margin-left:270px;}
+
+
+
+/*bookmark*/
+.left_bookshelf{ background:url(../images/bookrack_collect_left.jpg) no-repeat right top;}

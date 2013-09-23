@@ -1,0 +1,41 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- A minimal Flowplayer setup to get you started -->
+
+
+	<!--
+		include flowplayer JavaScript file that does
+		Flash embedding and provides the Flowplayer API.
+	-->
+	<script type="text/javascript" src="./flowplayer/flowplayer-3.2.12.min.js"></script>
+
+	<!-- some minimal styling, can be removed -->
+	<link rel="stylesheet" type="text/css" href="./flowplayer/style.css">
+	<style>
+		body { background: url(images/repeat_bg.jpg)}
+	</style>
+
+	<!-- page title -->
+	<title><%= page_title %></title>
+
+</head><body>
+
+	<div id="page">
+
+		<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
+		<a
+			 href="<%= flv_url %>"
+			 style="display:block;"
+			 id="player">
+		</a>
+
+		<!-- this will install flowplayer inside previous A- tag. -->
+		<h1><%= page_title %></h1>
+		<script>
+			flowplayer("player", "./flowplayer/flowplayer-3.2.16.swf");
+		</script>
+
+	</div>
+
+
+</body></html>
