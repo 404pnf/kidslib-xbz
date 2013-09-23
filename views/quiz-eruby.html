@@ -1,0 +1,80 @@
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title><%= page_title %></title>
+	<link  href="styles/common.css" rel="stylesheet" type="text/css" />
+	<link  href="styles/test.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<!--[if lte IE 6]>
+		<script src="js/DD_belatedPNG_0.0.8a.js" type="text/javascript"></script>
+		<script type="text/javascript">DD_belatedPNG.fix('.pngFix');</script>
+	<![endif]-->
+
+	<script type="text/javascript">
+		function onclick_right(){
+			var an = document.getElementById("answer");
+			an.className="answer_right answer fleft"
+		}
+		function onclick_wrong(){
+			var an = document.getElementById("answer");
+			an.className="answer_wrong answer fleft"
+		}
+	</script>
+</head>
+
+<body>
+	<div class="wrapper repeat_bg">
+		<div class="top pngFix"> <!-- 	顶部开始	 -->
+			<div class="top_login"></div>
+			<div class="title">
+				<a href="" class="font_DFHaibaoW12 title_left"><%= page_title %></a>
+				<a href="" class="title_name font_DFHaibaoW12">小测试 </a>
+			</div>
+		</div> <!-- 顶部结束 -->
+
+		<div class="main"> <!-- 题目开始	 -->
+			<div class="word_box fleft">
+				<ul>
+					<%= randomized_choices %>
+				</ul>
+				<div class="fclear oh">
+					<%= prev_q %>
+					<%= next_q %>
+				</div>
+			</div>
+
+			<div class="question fleft"> <!-- 题目的mp3和图片 -->
+				<!-- set up player container  -->
+				<div id="player" style="display:block;width:630px;height:590px;"></div>
+			</div>  <!-- 题目的mp3和图片结束 -->
+
+			<!-- answer：默认状态 answer_right：答对了 answer_wrong:答错了-->
+			<div class="answer fleft" id="answer"></div>
+			<div class="op_box fleft">
+				<div class="oh"></div>
+			</div>
+		</div> <!-- 	题目结束	 -->
+
+		<div class="bottom"> <!-- 外研社标志 footer -->
+			<div class="fltrp_logo fright"></div>
+		</div> <!-- 外研社标志 footer结束	 -->
+
+	</div>
+
+	<script type="text/javascript" src="flowplayer/flowplayer-3.2.12.min.js"></script>
+	<script>
+		$f("player", "flowplayer/flowplayer-3.2.16.swf", {
+
+		    clip: {
+		       url: "ceshi/<%= mp3 %>",
+
+		       // this style of configuring the cover image was added in audio
+		       // plugin version 3.2.3
+		       coverImage: { url: "ceshi/<%= pic %>",
+		                    scaling: 'orig' }
+		    }
+
+		});
+	</script>
+</body>
+</html>

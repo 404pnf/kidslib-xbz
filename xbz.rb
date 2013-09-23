@@ -17,10 +17,10 @@ def generate_xbz_html(path)
     # eruby中的变量名就是 each do 中的对应名字
     # 去掉结尾的flv
     [game, story, song, tz].each { |e| e.sub!(/\.flv$/, ''); e.strip! }
-    book = "#{ id }_book.html"
-    quiz = "#{ id }_quiz.html"
+    book = "#{ id }_book"
+    quiz = "#{ id }_quiz_0"
 
-	  input = File.read("#{VIEWS}/xbz.eruby")
+	  input = File.read("#{VIEWS}/xbz-eruby.html")
 	  eruby = Erubis::Eruby.new(input)    # create Eruby object
 	  unit_html =  eruby.result(binding) # get result
 	  p "生成 #{ id }.html "
@@ -28,7 +28,7 @@ def generate_xbz_html(path)
 
     [game, story, song, tz].each do |e|
 	    flv_url = "flv/#{e}.flv"
-	    input = File.read("#{VIEWS}/video.eruby")
+	    input = File.read("#{VIEWS}/video-eruby.html")
 	    eruby = Erubis::Eruby.new(input)    # create Eruby object
 	    video_html =  eruby.result(binding) # get result
 	    p "生成 #{ e }.html "
