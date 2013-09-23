@@ -1,6 +1,6 @@
 require 'csv'
 require 'erubis'
-
+require 'fileutils'
 
 CSVFILE = 'csv/xbz_video.csv'
 ERUBY_TPL = 'views/xbz.html.eruby'
@@ -37,9 +37,18 @@ def generate_xbz_html(path)
 	end
 end
 
+def copy_asset_to_output
+	# If you want to copy all contents of a directory instead of the
+	# directory itself, c.f. src/x -> dest/x, src/y -> dest/y,
+	# use following code.
+	# cp_r('src', 'dest') makes dest/src,
+	# but this doesn't.
+	FileUtils.cp_r 'views/.', 'output', :verbose => true
+end
+
 if __FILE__ == $PROGRAM_NAME
   path = ARGV[0] || CSVFILE
   p "输入文件是#{ path }"
   generate_xbz_html(path)
+  copy_asset_to_output
 end
-
