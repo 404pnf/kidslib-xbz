@@ -13,11 +13,11 @@ VIEWS = 'views'
 def generate_xbz_html(path)
 	CSV.read(path).each do |id, _, game, story, song, tz, title, unit|
     page_title = "#{unit}： #{title}"
-
+    id.downcase!
     # eruby中的变量名就是 each do 中的对应名字
     # 去掉结尾的flv
     [game, story, song, tz].each { |e| e.sub!(/\.flv$/, ''); e.strip! }
-    book = "#{ id }_book"
+    book = "#{ id }_book_0"
     quiz = "#{ id }_quiz_0"
 
 	  input = File.read("#{VIEWS}/xbz-eruby.html")

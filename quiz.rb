@@ -14,8 +14,9 @@ def generate_quiz_html(path)
 	hash = Hash.new { |h, k| h[k] = [] }
 	c = CSV.read(path)
 	c.each_with_object(hash) { |e, o| hash[e[5]] << e }
-	hash.each do |unit_id, q |
+	hash.each do |unit_idx, q |
 		len = q.size
+		unit_id = unit_idx.downcase
 		q.each_with_index do |(shuming, nid, pic, mp3, choices, unit), idx|
     	page_title = "#{unit_id}"
     	pic.gsub!(/'/, '_')

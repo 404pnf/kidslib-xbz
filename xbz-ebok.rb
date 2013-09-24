@@ -20,15 +20,14 @@ def gen_xbz_book_html(path)
 	h.each do |unit, pages|
 		len = pages.size
 		pages.each_with_index do |(jpg, mp3), idx|
-			basename = "#{unit}_book"
+			basename = "#{ unit.downcase }_book"
 			prev_link = idx == 0 ? nil : "#{basename}_#{ idx - 1}.html"
 			next_link = idx == 2 ? nil : "#{basename}_#{ idx + 1}.html"
 
 			input = File.read('views/xbzebook-eruby.html')
 	    eruby = Erubis::Eruby.new(input)    # create Eruby object
 	    book_html =  eruby.result(binding) # get result
-	    File.write("output/html/#{basename}_#{idx}.html", book_html, verbose: true)
-	    #p book_html
+	    File.write("output/html/#{basename}_#{idx}.html", book_html)
 	  end
   end
 end

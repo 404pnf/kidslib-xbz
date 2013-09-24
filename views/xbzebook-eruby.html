@@ -13,13 +13,14 @@
   <link rel="stylesheet" type="text/css" href="../flowplayer/style.css">
 </head>
 <body>
-    <% if prev_link %>
-      <div id = "prev"><a href="<%= prev_link %>"> prev </a></div>
-    <% end %>
-    <img src="../book/<%= jpg %>" />
-    <% if next_link %>
-      <div id = "next"><a href="<%= next_link %>"> next </a></div>
-    <% end %>
+  <div id="to_unit_page"><a href="<%= unit %>.html">返回</a></div>
+  <% if prev_link %>
+    <div id = "prev"><a href="<%= prev_link %>"> prev </a></div>
+  <% end %>
+  <img src="../book/<%= jpg %>" />
+  <% if next_link %>
+    <div id = "next"><a href="<%= next_link %>"> next </a></div>
+  <% end %>
   <!-- set up player container  -->
   <div id = "player" style="display:block;width:230px;height:30px;"></div>
 
