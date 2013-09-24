@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title><%= unit %></title>
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <!-- required files for booklet -->
+  <style type="text/css">
+    body { background: url('../images/repeat_bg.jpg')}
+    h1 { text-align: center }
+  </style>
+  <!-- some minimal styling, can be removed -->
+  <link rel="stylesheet" type="text/css" href="../flowplayer/style.css">
+</head>
+<body>
+    <% if prev_link %>
+      <div id = "prev"><a href="<%= prev_link %>"> prev </a></div>
+    <% end %>
+    <img src="../book/<%= jpg %>" />
+    <% if next_link %>
+      <div id = "next"><a href="<%= next_link %>"> next </a></div>
+    <% end %>
+  <!-- set up player container  -->
+  <div id = "player" style="display:block;width:230px;height:30px;"></div>
+
+  <script type="text/javascript" src="../flowplayer/flowplayer-3.2.12.min.js"></script>
+  <script>
+    $f("player", "../flowplayer/flowplayer-3.2.16.swf", {
+        clip: {
+           url: "../book/<%= mp3 %>",
+         }
+
+    });
+  </script>
+</body>
+</html>
