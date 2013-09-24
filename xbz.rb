@@ -24,15 +24,15 @@ def generate_xbz_html(path)
 	  eruby = Erubis::Eruby.new(input)    # create Eruby object
 	  unit_html =  eruby.result(binding) # get result
 	  p "生成 #{ id }.html "
-	  File.write("output/#{ id }.html", unit_html)
+	  File.write("output/html/#{ id }.html", unit_html)
 
     [game, story, song, tz].each do |e|
-	    flv_url = "flv/#{e}.flv"
+	    flv_url = "../flv/#{e}.flv"
 	    input = File.read("#{VIEWS}/video-eruby.html")
 	    eruby = Erubis::Eruby.new(input)    # create Eruby object
 	    video_html =  eruby.result(binding) # get result
 	    p "生成 #{ e }.html "
-	    File.write("output/#{ e }.html", video_html)
+	    File.write("output/html/#{ e }.html", video_html)
 	  end
 	end
 end

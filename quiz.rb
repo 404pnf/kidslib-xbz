@@ -19,7 +19,7 @@ def generate_quiz_html(path)
 		q.each_with_index do |(shuming, nid, pic, mp3, choices, unit), idx|
     	page_title = "#{unit_id}"
     	pic.gsub!(/'/, '_')
-    	pic.gsub!(/ /, ' ')
+    	pic.gsub!(/ /, '_')
 			mp3.strip!
 			mp3.gsub!(/'/, '_') # 之前有文件名字中有单引号
 			mp3.gsub!(/ /, '_')
@@ -45,7 +45,7 @@ eof
 		  eruby = Erubis::Eruby.new(input)    # create Eruby object
 		  quiz_html =  eruby.result(binding) # get result
 		  p "生成 #{ unit_id }_quiz_#{ idx }.html "
-		  File.write("output/#{ unit_id }_quiz_#{ idx }.html", quiz_html)
+		  File.write("output/html/#{ unit_id }_quiz_#{ idx }.html", quiz_html)
 		end
 	end
 end
