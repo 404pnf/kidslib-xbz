@@ -13,6 +13,7 @@ VIEWS = 'views'
 def generate_xbz_html(path)
 	CSV.read(path).each do |id, _, game, story, song, tz, title, unit|
     page_title = "#{unit}： #{title}"
+    p page_title
     id.downcase!
     # eruby中的变量名就是 each do 中的对应名字
     # 去掉结尾的flv

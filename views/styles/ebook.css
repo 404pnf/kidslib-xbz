@@ -4,25 +4,37 @@
 .unit_nav_classify { position:relative; margin-left:93px; padding-top:245px;}
 .unit_nav_classify li a{ font-family: "DFHaibaoW12"; color:#f26522; font-size:25px; padding-left:70px; display:block; position:absolute}
 .unit_nav_classify a:hover{ color:#ed1c24}
-	/*1*/
-	a.unit_m1{ background:url(../images/unit_m1.png) no-repeat; width:118px; height:96px; line-height:96px; left:219px}
-	a.unit_m1:hover{ background:url(../images/unit_m1o.png) no-repeat;}
-	/*2*/
-	a.unit_m2{ background:url(../images/unit_m2.png) no-repeat; width:152px; height:97px; line-height:97px; top:330px; left:219px;}
-	a.unit_m2:hover{ background:url(../images/unit_m2o.png) no-repeat;}
-	/*3*/
-	a.unit_m3{ background:url(../images/unit_m3.png) no-repeat; width:222px; height:129px; line-height:129px;top:430px; left:219px;}
-	a.unit_m3:hover{ background:url(../images/unit_m3o.png) no-repeat;}
-	/*4*/
-	a.unit_m4{ background:url(../images/unit_m4.png) no-repeat; width:152px; height:119px; line-height:119px; top:550px;}
-	a.unit_m4:hover{ background:url(../images/unit_m4o.png) no-repeat;}
-	/*5*/
-	a.unit_m5{ background:url(../images/unit_m5.png) no-repeat; width:234px; height:179px; line-height:179px; left:550px; top:400px; padding-left:40px!important}
-	a.unit_m5:hover{ background:url(../images/unit_m5o.png) no-repeat;}
-	/*6*/
-	a.unit_m6{ background:url(../images/unit_m6.png) no-repeat; width:157px; height:273px; line-height:273px; left:1000px; top:130px;padding-left:30px!important}
-	a.unit_m6:hover{ background:url(../images/unit_m6o.png) no-repeat;}
-	
+/*1*/
+a.unit_m1{ background:url(../images/unit_m1.png) no-repeat; width:118px; height:96px; line-height:96px; left:219px}
+a.unit_m1:hover{ background:url(../images/unit_m1o.png) no-repeat;}
+/*2*/
+a.unit_m2{ background:url(../images/unit_m2.png) no-repeat; width:152px; height:97px; line-height:97px; top:330px; left:219px;}
+a.unit_m2:hover{ background:url(../images/unit_m2o.png) no-repeat;}
+/*3*/
+a.unit_m3{ background:url(../images/unit_m3.png) no-repeat; width:222px; height:129px; line-height:129px;top:430px; left:219px;}
+a.unit_m3:hover{ background:url(../images/unit_m3o.png) no-repeat;}
+/*4*/
+a.unit_m4{ background:url(../images/unit_m4.png) no-repeat; width:152px; height:119px; line-height:119px; top:550px;}
+a.unit_m4:hover{ background:url(../images/unit_m4o.png) no-repeat;}
+/*5*/
+a.unit_m5{ background:url(../images/unit_m5.png) no-repeat; width:234px; height:179px; line-height:179px; left:550px; top:400px; padding-left:40px!important}
+a.unit_m5:hover{ background:url(../images/unit_m5o.png) no-repeat;}
+/*6*/
+a.unit_m6{ background:url(../images/unit_m6.png) no-repeat; width:157px; height:273px; line-height:273px; left:1000px; top:130px;padding-left:30px!important}
+a.unit_m6:hover{ background:url(../images/unit_m6o.png) no-repeat;}
+.unit_bg .nianling {
+    bottom: 183px;
+    color: #FFFFFF;
+    display: block;
+    font-family: "DFHaibaoW12";
+    font-size: 28px;
+    height: 50px;
+    line-height: 50px;
+    position: absolute;
+    right: 45px;
+    text-align: center;
+    width: 130px;
+}
 /*-------------------电子书播放器-------------------*/
 /*page pre next*/
 .ebook_pre,
