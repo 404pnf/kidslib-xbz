@@ -5,9 +5,38 @@
   <title><%= unit %></title>
   <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <!-- required files for booklet -->
-  <style type="text/css">
-    body { background: url('../images/repeat_bg.jpg')}
+    <style type="text/css">
+    body { background: url('../images/repeat_bg.jpg') }
     h1 { text-align: center }
+    #next  a , #prev  a {
+		display: block;
+		height: 0px;
+		overflow: hidden;
+		padding-top: 170px;
+		width: 74px;
+		}
+#next  a {
+		background: url("../images/arrow-next.png") no-repeat;
+		position: absolute;
+		right: 200px;
+		top: 600px;
+		}
+#prev  a {
+		background: url("../images/arrow-prev.png") no-repeat;
+		position: absolute;
+		left: 200px;
+		top: 600px;
+	  }
+#to_unit_page  a{
+		background: url("../images/pre.jpg") no-repeat scroll 0 0 transparent;
+		color: #FFFFFF;
+		font-size: 20px;
+		height: 30px;
+		line-height: 300%;
+		margin-left: -750px;
+		padding: 0 15px 5px 30px;
+		width: 187px;
+	}
   </style>
   <!-- some minimal styling, can be removed -->
   <link rel="stylesheet" type="text/css" href="../flowplayer/style.css">
@@ -22,8 +51,7 @@
     <div id = "next"><a href="<%= next_link %>"> next </a></div>
   <% end %>
   <!-- set up player container  -->
-  <div id = "player" style="display:block;width:230px;height:30px;"></div>
-
+  <div id = "player" style="display:block;width:230px;height:30px;margin-top:15px ;margin-bottom:15px"></div>
   <script type="text/javascript" src="../flowplayer/flowplayer-3.2.12.min.js"></script>
   <script>
     $f("player", "../flowplayer/flowplayer-3.2.16.swf", {
