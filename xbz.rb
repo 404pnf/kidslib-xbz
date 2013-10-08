@@ -12,7 +12,7 @@ VIEWS = 'views'
 # "1A_U1","99"," xbz1au1_game.flv"," xbz1au1_story.flv"," xbz1au1_song.flv"," xbz1au1_tz.flv","Hello!","Unit 1"
 def generate_xbz_html(path)
 	CSV.read(path).each do |id, _, game, story, song, tz, title, unit|
-    page_title = "#{unit}： #{title}"
+    page_title = "#{unit} #{title}"
     p page_title
     id.downcase!
     # eruby中的变量名就是 each do 中的对应名字
