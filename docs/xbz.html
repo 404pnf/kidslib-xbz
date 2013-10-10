@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>xbz.rb</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="quiz.html">
+                quiz.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-ebok.html">
+                xbz-ebok.rb
+              </a>
+            
+              
+              <a class="source" href="xbz.html">
+                xbz.rb
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>xbz.rb</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">require</span> <span class="string">'csv'</span>
+<span class="keyword">require</span> <span class="string">'erubis'</span>
+<span class="keyword">require</span> <span class="string">'fileutils'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p> 多次引用和需要修改的常量</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="constant">CSVFILE</span> = <span class="string">'csv/xbz_video.csv'</span>
+<span class="constant">OUTPUT</span> = <span class="string">'ouput'</span>
+<span class="constant">VIEWS</span> = <span class="string">'views'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2>csv format</h2>
+<p>&quot;书名&quot;,&quot;nid&quot;,&quot;做游戏&quot;,&quot;看动画&quot;,&quot;听儿歌&quot;,&quot;拓展学习&quot;,&quot;单元名称&quot;,&quot;单元编号&quot;</p>
+<pre><code>&quot;1A_U1&quot;,&quot;99&quot;,&quot; xbz1au1_game.flv&quot;,&quot; xbz1au1_story.flv&quot;,&quot; xbz1au1_song.flv&quot;,&quot; xbz1au1_tz.flv&quot;,&quot;Hello!&quot;,&quot;Unit 1&quot;</code></pre>
+<p>每一个flv文件和mp3文件都会生成单独的html页面。
+这些页面使用 video-eruby.html 模版。</p>
+<p>同时，每条记录会生成一个聚合页面有链接到各个单独html页面。
+这个页面使用 xbz-eruby.html 模版</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>主函数。</h2>
+<p>写得很不好。过于拘泥步骤了。</p>
+<p>TODO; FIXME</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">generate_xbz_html</span><span class="params">(path)</span></span>
+  <span class="constant">CSV</span>.read(path).each <span class="keyword">do</span> |id, <span class="number">_</span>, game, story, song, tz, title, unit|
+    page_title = <span class="string">"<span class="subst">#{unit}</span> <span class="subst">#{title}</span>"</span>
+    p page_title
+    id.downcase!</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>eruby中的变量名就是 each do 中的对应名字。
+去掉结尾的flv。
+这里采用直接修改变量的方法sub!和strip!。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    [game, story, song, tz].each { |e| e.sub!(<span class="regexp">/\.flv$/</span>, <span class="string">''</span>); e.strip! }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>因为book和quiz都是多页的
+因此我们这里链接到第0页。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    book = <span class="string">"<span class="subst">#{ id }</span>_book_0"</span>
+    quiz = <span class="string">"<span class="subst">#{ id }</span>_quiz_0"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>生成每课的聚合页面</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    input = <span class="constant">File</span>.read(<span class="string">"<span class="subst">#{<span class="constant">VIEWS</span>}</span>/xbz-eruby.html"</span>)
+    eruby = <span class="constant">Erubis::Eruby</span>.new(input)
+    unit_html =  eruby.result(binding)
+    p <span class="string">"生成 <span class="subst">#{ id }</span>.html "</span>
+    <span class="constant">File</span>.write(<span class="string">"<span class="subst">#{<span class="constant">OUTPUT</span>}</span>/html/<span class="subst">#{ id }</span>.html"</span>, unit_html)</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>生成游戏，动画，儿歌，拓展的单独页面</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    [game, story, song, tz].each <span class="keyword">do</span> |e|
+      flv_url = <span class="string">"../flv/<span class="subst">#{e}</span>.flv"</span>
+      input = <span class="constant">File</span>.read(<span class="string">"<span class="subst">#{<span class="constant">VIEWS</span>}</span>/video-eruby.html"</span>)
+      eruby = <span class="constant">Erubis::Eruby</span>.new(input)
+      video_html =  eruby.result(binding)
+      p <span class="string">"生成 <span class="subst">#{ e }</span>.html "</span>
+      <span class="constant">File</span>.write(<span class="string">"<span class="subst">#{<span class="constant">OUTPUT</span>}</span>/html/<span class="subst">#{ e }</span>.html"</span>, video_html)
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>使用 &#39;views/.&#39; 会复制views目录下的所有文件，但不会创建views目录</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">copy_asset_to_output</span></span>
+  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'output'</span>, <span class="symbol">:verbose</span> =&gt; <span class="keyword">true</span>
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h2>干活</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">if</span> __FILE_<span class="number">_</span> == <span class="variable">$PROGRAM_NAME</span>
+  path = <span class="constant">ARGV</span>[<span class="number">0</span>] || <span class="constant">CSVFILE</span>
+  p <span class="string">"输入文件是<span class="subst">#{ path }</span>"</span>
+  generate_xbz_html(path)
+  copy_asset_to_output
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
