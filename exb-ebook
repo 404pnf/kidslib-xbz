@@ -23,10 +23,11 @@ def gen_xbz_book_html(path)
   # get mp3 and jpg tuples
   #
   # [["3b_u9_2.jpg", "3b_u9_2.mp3"], ["3b_u9_3.jpg", "3b_u9_3.mp3"]]
-  Dir.chdir path
-  f = Dir['*.jpg'].sort.zip Dir['*.mp3'].sort
+  f = Dir.chdir(path) {
+        Dir['*.jpg'].sort.zip Dir['*.mp3'].sort
+
+      } # Dir.chdir path {} 在path中执行{}中命令但不切换目录
   p "共有图书 #{ f.size } 本"
-  Dir.chdir __dir__ # 回到脚本执行的目录
 
   # 书名是文件名的前5个字符(0..4)。
   # 用它作为键，构建所有图书的hash
@@ -49,7 +50,8 @@ def gen_xbz_book_html(path)
       input = File.read('views/xbzebook-eruby.html')
       eruby = Erubis::Eruby.new(input)    # create Eruby object
       book_html =  eruby.result(binding) # get result
-      File.write("output/html/#{basename}_#{idx}.html", book_html)
+      p "_output/html/#{basename}_#{idx}.html"
+      File.write("_output/html/#{basename}_#{idx}.html", book_html)
     end
   end
 end
