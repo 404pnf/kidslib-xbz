@@ -18,7 +18,7 @@
 	</style>
 
 	<!-- page title -->
-	<title><%= page_title %></title>
+	<title><%= @page_title %></title>
 
 </head>
 <body>
@@ -27,13 +27,13 @@
 
 		<!-- this A tag is where your Flowplayer will be placed. it can be anywhere -->
 		<a
-			 href="<%= flv_url %>"
+			 href="../flv/<%= @flv %>"
 			 style="display:block;"
 			 id="player">
 		</a>
 
 		<!-- this will install flowplayer inside previous A- tag. -->
-		<h1><%= page_title %></h1>
+		<h1><%= @page_title %></h1>
 		<script>
 			flowplayer("player", "../flowplayer/flowplayer-3.2.16.swf");
 		</script>
