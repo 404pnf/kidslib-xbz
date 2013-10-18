@@ -11,7 +11,7 @@ VIEWS = 'views'
 # ## CSV的格式
 # 每条记录有一个图片，一个音频，但答案选项有4个，用英文逗号分开。
 #
-#     "书名","nid","图片","音频","答案选项","unit_id"
+#     "title","nid","pic","audio","answer","unit_id"
 #     "2BU2_six","315","2BU2_six.jpg"," 2BU2_six.mp3","six, three, seven, five","2B_U2"
 #
 # ----
@@ -39,17 +39,18 @@ VIEWS = 'views'
 def generate_quiz_html(path)
   hash = Hash.new { |h, k| h[k] = [] }
   c = CSV.read(path)
+  # 这里应该改为 CSV.table(path, converters: nil)
+  # 然后用e[:unit_id]
+  # csv的header是   "书名","nid","图片","音频","答案选项","unit_id"
+  # 所以e[5]对应 'unit_id'
   c.each_with_object(hash) { |e, o| hash[e[5]] << e }
   hash.each do |unit_idx, q |
     len = q.size
     unit_id = unit_idx.downcase
     q.each_with_index do |(shuming, nid, pic, mp3, choices, unit), idx|
       page_title = "#{unit_id}"
-      pic.gsub!(/'/, '_')
-      pic.gsub!(/ /, '_')
-      mp3.strip!
-      mp3.gsub!(/'/, '_') # 之前有文件名字中有单引号
-      mp3.gsub!(/ /, '_')
+      pic.strip!.gsub!(/[' ]/, '_')
+      mp3.strip!.gsub!(/[' ]/, '_')
       answers = choices.split(',')
       choice_str = <<eof
         <li><a href='#' onclick='onclick_right();'>#{answers[0]}</a></li>

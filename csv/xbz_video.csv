@@ -1,4 +1,4 @@
-"书名","nid","做游戏","看动画","听儿歌","拓展学习","单元名称","单元编号"
+"id","nid","game","sotry","song","tz","title","unit"
 "1A_U1","99"," xbz1au1_game.flv"," xbz1au1_story.flv"," xbz1au1_song.flv"," xbz1au1_tz.flv","Hello!","Unit 1"
 "1A_U2","100"," xbz1au2_game.flv"," xbz1au2_story.flv"," xbz1au2_song.flv"," xbz1au2_tz.flv","Mummy and Daddy","Unit 2"
 "1A_U3","101"," xbz1au3_game.flv"," xbz1au3_story.flv"," xbz1au3_song.flv"," xbz1a_tz1.flv","I'm Lingling","Unit 3"
