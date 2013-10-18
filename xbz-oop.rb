@@ -1,11 +1,8 @@
-require 'csv'
-require 'erubis'
-require 'fileutils'
 
-# ## 多次引用和需要修改的常量
-CSVFILE = 'csv/xbz_video.csv'
-OUTPUT = 'ouput'
-VIEWS = 'views'
+# ## 使用方法
+# 命令行运行 rake 查看。
+#
+# ----
 
 # ## csv format
 # "id","nid","game","sotry","song","tz","title","unit"
@@ -28,8 +25,8 @@ VIEWS = 'views'
 #
 #
 # ## 用途
-# 从csv每条记录生成对应的html
-#
+# 1. 从csv每条记录生成对应的xbz聚合页面html
+# 1. 从csv每条记录生成对应的4个xbz课程内容页面html
 # ----
 
 # ## 需要库
@@ -37,23 +34,12 @@ VIEWS = 'views'
 require 'csv'
 require 'fileutils'
 require 'erubis'
-
-# ## CSV格式
-# 请确保csv文件的header与下面一一对应！
-#
-#       "title","video","category","age"
-#       "穿鞋真舒服"," hb12_music_01","欢乐音乐屋","1-3岁"
-#
-# 1. 只要把video添加.flv后缀就是视频文件的文件名
-# 1. vidoe对应的值也作为文件名，添加.html后缀
-# 1. video对应的值是唯一的
 # ----
 
 # ## 主程序
-# 1. erubis中的@var 名就是csv的header对应的值
+# 1. erubis中的@var 名就是csv的header对应的值或者在类里面准备的值
 # 1. 有些记录有前后空白，需要strip掉
 # ----
-require 'pp'
 class Xbz
   include Enumerable
   def initialize(file)
@@ -77,9 +63,10 @@ class Xbz
     end
   end
 
+  # 后面代码会对下面方法返回的值调用each方法绑定模版
   [:game, :story, :song, :tz].each do |name|
     define_method(name) do
-     @h.each_with_object([]) do |e, o|
+      @h.each_with_object([]) do |e, o|
         ee = e.dup
         ee = e.select { |k| [:unit, :title, name].include? k }
         ee[:flv] = e[name]
@@ -109,7 +96,7 @@ def xbz
   xbz_tpl = bind 'views/xbz-eruby.html'
   v.each_xbz do |e|
     html = xbz_tpl.call e
-    p "write _output/html/#{ e[:id] }.html "
+    # p "write _output/html/#{ e[:id] }.html "
     File.write("_output/html/#{ e[:id] }.html", html)
   end
 end
@@ -119,13 +106,9 @@ def games
   game_tpl = bind 'views/video-eruby.html'
   %w(game story song tz).each do |name|
     v.send(name.intern).each do |e|
-      p e
       html = game_tpl.call e
-      p "write _output/html/#{ e[:filename] }.html "
+      # p "write _output/html/#{ e[:filename] }.html "
       File.write("_output/html/#{ e[:filename] }.html", html)
     end
   end
 end
-
-#xbz
-#games

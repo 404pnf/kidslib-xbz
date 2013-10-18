@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>xbz-oop.rb</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="quiz.html">
+                quiz.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-ebok.html">
+                xbz-ebok.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-oop.html">
+                xbz-oop.rb
+              </a>
+            
+              
+              <a class="source" href="xbz.html">
+                xbz.rb
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>xbz-oop.rb</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>使用方法</h2>
+<p>命令行运行 rake 查看。</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2>csv format</h2>
+<p>&quot;id&quot;,&quot;nid&quot;,&quot;game&quot;,&quot;sotry&quot;,&quot;song&quot;,&quot;tz&quot;,&quot;title&quot;,&quot;unit&quot;</p>
+<pre><code>&quot;1A_U1&quot;,&quot;99&quot;,&quot; xbz1au1_game.flv&quot;,&quot; xbz1au1_story.flv&quot;,&quot; xbz1au1_song.flv&quot;,&quot; xbz1au1_tz.flv&quot;,&quot;Hello!&quot;,&quot;Unit 1&quot;</code></pre>
+<p>每一个flv文件和mp3文件都会生成单独的html页面。
+这些页面使用 video-eruby.html 模版。</p>
+<p>同时，每条记录会生成一个聚合页面有链接到各个单独html页面。
+这个页面使用 xbz-eruby.html 模版</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h2>主函数。</h2>
+<h2>使用方法</h2>
+<ol>
+<li>输入的csv文件写死在脚本中了。为了能够方便使用rake生成部署</li>
+<li>rake 查看可执行任务</li>
+</ol>
+<h2>用途</h2>
+<ol>
+<li>从csv每条记录生成对应的xbz聚合页面html</li>
+<li>从csv每条记录生成对应的4个xbz课程内容页面html</li>
+</ol>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2>需要库</h2>
+<p>为了方便让有ruby但没有gem的环境使用，尽量都使用标准库中的东西。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">require</span> <span class="string">'csv'</span>
+<span class="keyword">require</span> <span class="string">'fileutils'</span>
+<span class="keyword">require</span> <span class="string">'erubis'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2>主程序</h2>
+<ol>
+<li>erubis中的@var 名就是csv的header对应的值或者在类里面准备的值</li>
+<li>有些记录有前后空白，需要strip掉</li>
+</ol>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">Xbz</span></span>
+  <span class="keyword">include</span> <span class="constant">Enumerable</span>
+  <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(file)</span></span>
+    aoh = <span class="constant">CSV</span>.table(file, <span class="symbol">converters:</span> <span class="keyword">nil</span>).map(&amp;<span class="symbol">:to_hash</span>)
+    <span class="variable">@h</span> = aoh.map <span class="keyword">do</span> |h|
+      h.keys.each { |k| h[k] = h[k].strip }
+      h
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> <span class="title">each_xbz</span></span>
+    <span class="variable">@h</span>.each <span class="keyword">do</span> |e|</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>do not update e here, it will mess up @h</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      ee = e.dup
+      ee[<span class="symbol">:id</span>] = e[<span class="symbol">:id</span>].downcase
+      ee[<span class="symbol">:page_title</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:unit</span>] }</span> <span class="subst">#{e[<span class="symbol">:title</span>]}</span>"</span>
+      ee[<span class="symbol">:book</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>_book_0"</span>
+      ee[<span class="symbol">:quiz</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>_quiz_0"</span>
+      [<span class="symbol">:game</span>, <span class="symbol">:story</span>, <span class="symbol">:song</span>, <span class="symbol">:tz</span>].each { |s| ee[s] = e[s].sub(<span class="regexp">/\.flv$/</span>, <span class="string">''</span>) }
+      <span class="keyword">yield</span> ee
+    <span class="keyword">end</span>
+  <span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>后面代码会对下面方法返回的值调用each方法绑定模版</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  [<span class="symbol">:game</span>, <span class="symbol">:story</span>, <span class="symbol">:song</span>, <span class="symbol">:tz</span>].each <span class="keyword">do</span> |name|
+    define_method(name) <span class="keyword">do</span>
+      <span class="variable">@h</span>.each_with_object([]) <span class="keyword">do</span> |e, o|
+        ee = e.dup
+        ee = e.select { |k| [<span class="symbol">:unit</span>, <span class="symbol">:title</span>, name].<span class="keyword">include</span>? k }
+        ee[<span class="symbol">:flv</span>] = e[name]
+        ee[<span class="symbol">:filename</span>] = e[name].sub(<span class="regexp">/.flv$/</span>, <span class="string">''</span>)
+        ee[<span class="symbol">:page_title</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:unit</span>] }</span> <span class="subst">#{e[<span class="symbol">:title</span>]}</span>"</span>
+        o &lt;&lt; ee
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>这里用了 closure 啊 :)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">bind</span><span class="params">(tpl)</span></span>
+  -&gt; context { <span class="constant">Erubis::Eruby</span>.new(<span class="constant">File</span>.read(tpl)).evaluate(context) }
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>views目录后的点 &#39;.&#39; 表示复制该目录下所有内容，但不创建该目录</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">copy_asset</span></span>
+  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'_output'</span>, <span class="symbol">verbose:</span> <span class="keyword">true</span>
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h2>main</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">xbz</span></span>
+  v = <span class="constant">Xbz</span>.new <span class="string">'csv/xbz_video.csv'</span>
+
+  xbz_tpl = bind <span class="string">'views/xbz-eruby.html'</span>
+  v.each_xbz <span class="keyword">do</span> |e|
+    html = xbz_tpl.call e</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>p &quot;write _output/html/#{ e[:id] }.html &quot;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>.html"</span>, html)
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+<span class="function"><span class="keyword">def</span> <span class="title">games</span></span>
+  v = <span class="constant">Xbz</span>.new <span class="string">'csv/xbz_video.csv'</span>
+  game_tpl = bind <span class="string">'views/video-eruby.html'</span>
+  <span class="string">%w(game story song tz)</span>.each <span class="keyword">do</span> |name|
+    v.send(name.intern).each <span class="keyword">do</span> |e|
+      html = game_tpl.call e</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>p &quot;write _output/html/#{ e[:filename] }.html &quot;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:filename</span>] }</span>.html"</span>, html)
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
