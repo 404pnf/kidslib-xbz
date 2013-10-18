@@ -16,8 +16,6 @@ VIEWS = 'views'
 #
 # ----
 
-
-
 # ## 主函数
 # FIXME TODO
 #
@@ -80,7 +78,7 @@ end
 
 # 复制静态资源到output
 def copy_asset_to_output
-  FileUtils.cp_r 'views/.', "#{OUTPUT}", :verbose => true
+  FileUtils.cp_r 'views/.', "#{OUTPUT}", verbose: true
 end
 
 # ## 干活
