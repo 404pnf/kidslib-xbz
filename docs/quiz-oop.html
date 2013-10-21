@@ -66,7 +66,7 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <h2>CSV的格式</h2>
-<p>每条记录有一个图片，一个音频，但答案选项有4个，用英文逗号分开。</p>
+<p>每条记录有一个图片，一个音频，但答案选项有4个，用英文逗号分开。第一个出现的答案是正确答案。</p>
 <pre><code>&quot;title&quot;,&quot;nid&quot;,&quot;pic&quot;,&quot;mp3&quot;,&quot;answer&quot;,&quot;unit_id&quot;
 &quot;2BU2_six&quot;,&quot;315&quot;,&quot;2BU2_six.jpg&quot;,&quot; 2BU2_six.mp3&quot;,&quot;six, three, seven, five&quot;,&quot;2B_U2&quot;</code></pre>
 <hr>
@@ -83,18 +83,12 @@
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <h2>主函数</h2>
-<p>FIXME
-TODO</p>
-<p>相当基于步骤。相当不好。且选项的乱序是在脚本中混合了变量和html。真是相当丑陋啊。</p>
-<p>更好的方法是把选项作为</p>
-<pre><code>[{answer: &#39;uncle&#39;, correct?: true} {answer: &#39;aunt&#39;, correct?: false}]</code></pre>
-<p>然后在模版中用</p>
-<pre><code>&lt;li class=&quot;&lt;% a[:correct?] ? &#39;correct-anser&#39; : &#39;wrong-anser&#39; &quot;&gt;&lt;%= a[:anser]&gt;&lt;/li&gt;</code></pre>
 <h3>难点</h3>
 <ol>
 <li>先把对应相同单元的quiz按文件名命名规则收集在一起</li>
 <li>每课可以对应多个quiz。因此quiz页面需要分页，并计算是否有上一页和下一页。</li>
 <li>选项需要乱序</li>
+<li>css表中出现的第一个答案是正确答案</li>
 <li>正确选项和错误选项对应的css class不同</li>
 </ol>
 <hr>
@@ -117,9 +111,12 @@ TODO</p>
   <span class="function"><span class="keyword">def</span> <span class="title">initialize</span><span class="params">(file)</span></span>
     aoh = <span class="constant">CSV</span>.table(file, <span class="symbol">converters:</span> <span class="keyword">nil</span>).map(&amp;<span class="symbol">:to_hash</span>)
     <span class="variable">@h</span> = aoh.map <span class="keyword">do</span> |h|
-    	h[<span class="symbol">:unit_id</span>] = h[<span class="symbol">:unit_id</span>].downcase
-    	h[<span class="symbol">:answer</span>] = h[<span class="symbol">:answer</span>].gsub(<span class="string">' '</span>, <span class="string">''</span>) <span class="comment"># 每个答案之前有空格，先去掉否则后面替换为下划线了</span>
+      h[<span class="symbol">:unit_id</span>] = h[<span class="symbol">:unit_id</span>].downcase
+      h[<span class="symbol">:answer</span>] = h[<span class="symbol">:answer</span>].gsub(<span class="string">' '</span>, <span class="string">''</span>) <span class="comment"># 每个答案之前有空格，先去掉否则后面替换为下划线了</span>
       h.keys.each { |k| h[k] = h[k].strip.gsub(<span class="regexp">/[' ]/</span>, <span class="string">'_'</span>) }
+      tmp = h[<span class="symbol">:answer</span>].split(<span class="string">','</span>).map { |e| [<span class="string">'onclick_wrong();'</span>, e] }
+      tmp[<span class="number">0</span>][<span class="number">0</span>] = <span class="string">'onclick_right();'</span> <span class="comment"># 第一个答案是正确答案</span>
+      h[<span class="symbol">:answers</span>] = tmp.shuffle
       h
     <span class="keyword">end</span>
   <span class="keyword">end</span></pre></div></div>
@@ -142,7 +139,8 @@ TODO</p>
     <span class="variable">@units</span> = <span class="constant">Hash</span>.new { |h, k| h[k] = [] }
     <span class="variable">@h</span>.each_with_object(<span class="variable">@units</span>) <span class="keyword">do</span> |e, o|
       o[e[<span class="symbol">:unit_id</span>]] &lt;&lt; e
-    <span class="keyword">end</span></pre></div></div>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span></pre></div></div>
             
         </li>
         
@@ -153,11 +151,26 @@ TODO</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>p @units.keys</p>
+              <p>k is 1b_u11&quot;
+v is</p>
+<pre><code>   [{:title=&gt;&quot;1BU11_blocks&quot;, :nid=&gt;&quot;390&quot;, :pic=&gt;&quot;1BU11_blocks.jpg&quot;, :mp3=&gt;&quot;1BU11_blocks.mp3&quot;, :answer=&gt;&quot;blocks,_puppet,_doll,_car&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_doll&quot;, :nid=&gt;&quot;391&quot;, :pic=&gt;&quot;1BU11_doll.jpg&quot;, :mp3=&gt;&quot;1BU11_doll.mp3&quot;, :answer=&gt;&quot;doll,_puppet,_car,_girl&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_friend&quot;, :nid=&gt;&quot;392&quot;, :pic=&gt;&quot;1BU11_friend.jpg&quot;, :mp3=&gt;&quot;1BU11_friend.mp3&quot;, :answer=&gt;&quot;friend,_boy,_girl,_child&quot;, :unit_id=&gt;&quot;1b_u11&quot;}]</code></pre>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  <span class="keyword">end</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre>  <span class="function"><span class="keyword">def</span> <span class="title">each_quiz</span></span>
+    units.each <span class="keyword">do</span>|k, v|
+      len = v.size
+      v.each_with_index <span class="keyword">do</span> |h, idx|
+        context = h.dup
+        context[<span class="symbol">:idx</span>] = idx
+        context[<span class="symbol">:prev_q</span>] = idx == <span class="number">0</span> ? <span class="keyword">false</span> <span class="symbol">:</span> <span class="keyword">true</span>
+        context[<span class="symbol">:next_q</span>] = idx + <span class="number">1</span> == len ? <span class="keyword">false</span> <span class="symbol">:</span> <span class="keyword">true</span>
+        <span class="keyword">yield</span> context
+      <span class="keyword">end</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+<span class="keyword">end</span></pre></div></div>
             
         </li>
         
@@ -167,45 +180,6 @@ TODO</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>k is 1b_u11&quot;
-v is</p>
-<pre><code>   [{:title=&gt;&quot;1BU11_blocks&quot;, :nid=&gt;&quot;390&quot;, :pic=&gt;&quot;1BU11_blocks.jpg&quot;, :mp3=&gt;&quot;1BU11_blocks.mp3&quot;, :answer=&gt;&quot;blocks,_puppet,_doll,_car&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_doll&quot;, :nid=&gt;&quot;391&quot;, :pic=&gt;&quot;1BU11_doll.jpg&quot;, :mp3=&gt;&quot;1BU11_doll.mp3&quot;, :answer=&gt;&quot;doll,_puppet,_car,_girl&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_friend&quot;, :nid=&gt;&quot;392&quot;, :pic=&gt;&quot;1BU11_friend.jpg&quot;, :mp3=&gt;&quot;1BU11_friend.mp3&quot;, :answer=&gt;&quot;friend,_boy,_girl,_child&quot;, :unit_id=&gt;&quot;1b_u11&quot;}]</code></pre>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  <span class="function"><span class="keyword">def</span> <span class="title">each_quiz</span></span>
-    <span class="keyword">self</span>.units.each <span class="keyword">do</span>|k, v|
-      len = v.size
-
-      v.each_with_index <span class="keyword">do</span> |h, idx|
-        context = h.dup
-        context[<span class="symbol">:idx</span>] = idx
-        context[<span class="symbol">:page_title</span>] = h[<span class="symbol">:unit_id</span>]
-        context[<span class="symbol">:answers</span>] = h[<span class="symbol">:answer</span>].split(<span class="string">','</span>)
-        choice_str = &lt;&lt;eof
-          &lt;li&gt;&lt;a href=<span class="string">'#'</span> onclick=<span class="string">'onclick_right();'</span>&gt;<span class="comment">#{ context[:answers][0] }&lt;/a&gt;&lt;/li&gt;</span>
-          &lt;li&gt;&lt;a href=<span class="string">'#'</span> onclick=<span class="string">'onclick_wrong();'</span>&gt;<span class="comment">#{ context[:answers][1] }&lt;/a&gt;&lt;/li&gt;</span>
-          &lt;li&gt;&lt;a href=<span class="string">'#'</span> onclick=<span class="string">'onclick_wrong();'</span>&gt;<span class="comment">#{ context[:answers][2] }&lt;/a&gt;&lt;/li&gt;</span>
-          &lt;li&gt;&lt;a href=<span class="string">'#'</span> onclick=<span class="string">'onclick_wrong();'</span>&gt;<span class="comment">#{ context[:answers][3] }&lt;/a&gt;&lt;/li&gt;</span>
-eof
-        context[<span class="symbol">:randomized_choices</span>] = choice_str.split(<span class="regexp">/\n/</span>).shuffle.join(<span class="string">"\n"</span>)
-        context[<span class="symbol">:prev_q</span>] = idx == <span class="number">0</span> ? <span class="keyword">nil</span> <span class="symbol">:</span> <span class="string">"&lt;a href='<span class="subst">#{ h[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ idx - <span class="number">1</span> }</span>.html' class='pre font_mrosoftYHB fleft'&gt;上一题&lt;/a&gt;"</span>
-        context[<span class="symbol">:next_q</span>] = idx + <span class="number">1</span> == len ? <span class="keyword">nil</span> <span class="symbol">:</span>  <span class="string">"&lt;a href='<span class="subst">#{ h[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ idx + <span class="number">1</span> }</span>.html' class='next font_mrosoftYHB fleft'&gt;下一题&lt;/a&gt;"</span>
-      	<span class="keyword">yield</span> context
-      <span class="keyword">end</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span></pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>这里用了 closure 啊 :)</p>
 
@@ -218,11 +192,11 @@ eof
         </li>
         
         
-        <li id="section-9">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>views目录后的点 &#39;.&#39; 表示复制该目录下所有内容，但不创建该目录</p>
 
@@ -235,11 +209,11 @@ eof
         </li>
         
         
-        <li id="section-10">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap for-h2">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <h2>干活</h2>
 
@@ -254,8 +228,7 @@ eof
     <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ e[<span class="symbol">:idx</span>] }</span>.html"</span>, quiz_html)
   <span class="keyword">end</span>
   copy_asset
-<span class="keyword">end</span>
-quiz</pre></div></div>
+<span class="keyword">end</span></pre></div></div>
             
         </li>
         
