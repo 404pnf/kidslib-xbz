@@ -66,14 +66,20 @@ class Quiz
         context = h.dup
         context[:idx] = idx
         context[:page_title] = h[:unit_id]
-        context[:answers] = h[:answer].split(',')
-        choice_str = <<eof
-          <li><a href='#' onclick='onclick_right();'>#{ context[:answers][0] }</a></li>
-          <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][1] }</a></li>
-          <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][2] }</a></li>
-          <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][3] }</a></li>
-eof
-        context[:randomized_choices] = choice_str.split(/\n/).shuffle.join("\n")
+        #context[:answers] = h[:answer].split(',')
+        ans = h[:answer].split(',')
+        tmp = ans.map { |e| ['onclick_wrong();', e] }
+        tmp[0][0] = 'onclick_right();' # 第一个答案是正确答案
+        context[:answers] = tmp.shuffle
+        # anssers的格式是 [ [css1, answer1], [css2, answer2], .. ]
+
+#         choice_str = <<eof
+#           <li><a href='#' onclick='onclick_right();'>#{ context[:answers][0] }</a></li>
+#           <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][1] }</a></li>
+#           <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][2] }</a></li>
+#           <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][3] }</a></li>
+# eof
+        #context[:randomized_choices] = choice_str.split(/\n/).shuffle.join("\n")
         #context[:prev_q] = idx == 0 ? nil : "<a href='#{ h[:unit_id] }_quiz_#{ idx - 1 }.html' class='pre font_mrosoftYHB fleft'>上一题</a>"
         #context[:next_q] = idx + 1 == len ? nil :  "<a href='#{ h[:unit_id] }_quiz_#{ idx + 1 }.html' class='next font_mrosoftYHB fleft'>下一题</a>"
       	context[:prev_q] = (idx == 0 ? false : true)

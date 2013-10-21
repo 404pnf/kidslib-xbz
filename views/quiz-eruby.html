@@ -35,7 +35,10 @@
 		<div class="main"> <!-- 题目开始	 -->
 			<div class="word_box fleft">
 				<ul>
-					<%= @randomized_choices %>
+					<% for answer in @answers%>
+					<li><a href='#' onclick='<%= answer[0] %>'><%= answer[1] %></a></li>
+					<% end %>
+					<%==== @randomized_choices %>
 				</ul>
 				<div class="fclear oh">
 					<% if  @prev_q %>
