@@ -38,8 +38,14 @@
 					<%= @randomized_choices %>
 				</ul>
 				<div class="fclear oh">
-					<%= @prev_q %>
-					<%= @next_q %>
+					<% if  @prev_q %>
+					<a href='<%= @unit_id %>_quiz_<%=@idx - 1 %>.html' class='pre font_mrosoftYHB fleft'>上一题</a>
+					<% end %>
+					<% if  @next_q %>
+					<a href='<%= @unit_id %>_quiz_<%= @idx + 1 %>.html' class='next font_mrosoftYHB fleft'>下一题</a>"
+					<% end %>
+					<%==== @prev_q %>
+					<%==== @next_q %>
 				</div>
 			</div>
 

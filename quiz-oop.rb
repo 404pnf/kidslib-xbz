@@ -24,6 +24,7 @@ require 'pp'
 # 然后在模版中用
 #
 #     <li class="<% a[:correct?] ? 'correct-anser' : 'wrong-anser' "><%= a[:anser]></li>
+#
 # ### 难点
 # 1. 先把对应相同单元的quiz按文件名命名规则收集在一起
 # 1. 每课可以对应多个quiz。因此quiz页面需要分页，并计算是否有上一页和下一页。
@@ -42,9 +43,9 @@ class Quiz
     end
   end
 
+  # csv headers
+  # "title","nid","pic","mp3","answer","unit_id"
   def units
-    # csv headers
-    # "title","nid","pic","mp3","answer","unit_id"
     @units = Hash.new { |h, k| h[k] = [] }
     @h.each_with_object(@units) do |e, o|
       o[e[:unit_id]] << e
@@ -52,9 +53,10 @@ class Quiz
     # p @units.keys
   end
 
-  # p k, v
+
   # k is 1b_u11"
   # v is
+  #
   #        [{:title=>"1BU11_blocks", :nid=>"390", :pic=>"1BU11_blocks.jpg", :mp3=>"1BU11_blocks.mp3", :answer=>"blocks,_puppet,_doll,_car", :unit_id=>"1b_u11"}, {:title=>"1BU11_doll", :nid=>"391", :pic=>"1BU11_doll.jpg", :mp3=>"1BU11_doll.mp3", :answer=>"doll,_puppet,_car,_girl", :unit_id=>"1b_u11"}, {:title=>"1BU11_friend", :nid=>"392", :pic=>"1BU11_friend.jpg", :mp3=>"1BU11_friend.mp3", :answer=>"friend,_boy,_girl,_child", :unit_id=>"1b_u11"}]
   def each_quiz
     self.units.each do|k, v|
@@ -72,9 +74,11 @@ class Quiz
           <li><a href='#' onclick='onclick_wrong();'>#{ context[:answers][3] }</a></li>
 eof
         context[:randomized_choices] = choice_str.split(/\n/).shuffle.join("\n")
-        context[:prev_q] = idx == 0 ? nil : "<a href='#{ h[:unit_id] }_quiz_#{ idx - 1 }.html' class='pre font_mrosoftYHB fleft'>上一题</a>"
-        context[:next_q] = idx + 1 == len ? nil :  "<a href='#{ h[:unit_id] }_quiz_#{ idx + 1 }.html' class='next font_mrosoftYHB fleft'>下一题</a>"
-      	yield context
+        #context[:prev_q] = idx == 0 ? nil : "<a href='#{ h[:unit_id] }_quiz_#{ idx - 1 }.html' class='pre font_mrosoftYHB fleft'>上一题</a>"
+        #context[:next_q] = idx + 1 == len ? nil :  "<a href='#{ h[:unit_id] }_quiz_#{ idx + 1 }.html' class='next font_mrosoftYHB fleft'>下一题</a>"
+      	context[:prev_q] = (idx == 0 ? false : true)
+        context[:next_q] = (idx + 1 == len ? false : true )
+        yield context
       end
     end
   end
