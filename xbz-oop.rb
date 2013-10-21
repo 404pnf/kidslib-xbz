@@ -56,8 +56,8 @@ class Xbz
       ee = e.dup
       ee[:id] = e[:id].downcase
       ee[:page_title] = "#{ e[:unit] } #{e[:title]}"
-      ee[:book] = "#{ e[:id] }_book_0"
-      ee[:quiz] = "#{ e[:id] }_quiz_0"
+      ee[:book] = "#{ ee[:id] }_book_0"
+      ee[:quiz] = "#{ ee[:id] }_quiz_0"
       [:game, :story, :song, :tz].each { |s| ee[s] = e[s].sub(/\.flv$/, '') }
       yield ee
     end
