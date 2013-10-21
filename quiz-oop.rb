@@ -84,4 +84,3 @@ def quiz
   end
   copy_asset
 end
-quiz

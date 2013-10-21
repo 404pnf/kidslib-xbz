@@ -1,4 +1,5 @@
 require_relative 'xbz-oop.rb'
+require_relative 'quiz-oop.rb'
 
 # ## a timer
 def time(&block)
@@ -13,7 +14,12 @@ task :help do
   system('rake -T')
 end
 
-desc "generate html"
+desc "generate quiz"
+task :quiz do
+  time { quiz }
+end
+
+desc "generate xbz"
 task :gen do
   time { xbz }
   time { games }
