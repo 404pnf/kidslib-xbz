@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<title><%= @page_title %></title>
+	<title><%= @unit_id %></title>
 	<link  href="../styles/common.css" rel="stylesheet" type="text/css" />
 	<link  href="../styles/test.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="../style.css">
@@ -27,7 +27,7 @@
 		<div class="top pngFix"> <!-- 	顶部开始	 -->
 			<div class="top_login"></div>
 			<div class="title">
-				<a href="" class="font_DFHaibaoW12 title_left"><%= @page_title %></a>
+				<a href="" class="font_DFHaibaoW12 title_left"><%= @unit_id%></a>
 				<a href="" class="title_name font_DFHaibaoW12">小测试 </a>
 			</div>
 		</div> <!-- 顶部结束 -->
@@ -38,17 +38,14 @@
 					<% for answer in @answers%>
 					<li><a href='#' onclick='<%= answer[0] %>'><%= answer[1] %></a></li>
 					<% end %>
-					<%==== @randomized_choices %>
 				</ul>
 				<div class="fclear oh">
 					<% if  @prev_q %>
 					<a href='<%= @unit_id %>_quiz_<%=@idx - 1 %>.html' class='pre font_mrosoftYHB fleft'>上一题</a>
 					<% end %>
 					<% if  @next_q %>
-					<a href='<%= @unit_id %>_quiz_<%= @idx + 1 %>.html' class='next font_mrosoftYHB fleft'>下一题</a>"
+					<a href='<%= @unit_id %>_quiz_<%= @idx + 1 %>.html' class='next font_mrosoftYHB fleft'>下一题</a>
 					<% end %>
-					<%==== @prev_q %>
-					<%==== @next_q %>
 				</div>
 			</div>
 
