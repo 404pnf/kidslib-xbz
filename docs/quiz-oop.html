@@ -203,7 +203,7 @@ v is</p>
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">copy_asset</span></span>
-  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'_output'</span>, <span class="symbol">verbose:</span> <span class="keyword">true</span>
+  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'output'</span>, <span class="symbol">verbose:</span> <span class="keyword">true</span>
 <span class="keyword">end</span></pre></div></div>
             
         </li>
@@ -224,8 +224,8 @@ v is</p>
   tpl = bind <span class="string">'views/quiz-eruby.html'</span>
   q.each_quiz <span class="keyword">do</span> |e|
     quiz_html = tpl.call e
-    p <span class="string">"生成 _output/html/<span class="subst">#{ e[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ e[<span class="symbol">:idx</span>] }</span>.html "</span>
-    <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ e[<span class="symbol">:idx</span>] }</span>.html"</span>, quiz_html)
+    p <span class="string">"生成 output/html/<span class="subst">#{ e[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ e[<span class="symbol">:idx</span>] }</span>.html "</span>
+    <span class="constant">File</span>.write(<span class="string">"output/html/<span class="subst">#{ e[<span class="symbol">:unit_id</span>] }</span>_quiz_<span class="subst">#{ e[<span class="symbol">:idx</span>] }</span>.html"</span>, quiz_html)
   <span class="keyword">end</span>
   copy_asset
 <span class="keyword">end</span></pre></div></div>

@@ -57,4 +57,4 @@ task :cop do
   system("rubocop *.rb")
 end
 
-task :default => [:help]
+task :default => [:help, :doc, :cop, :loc]

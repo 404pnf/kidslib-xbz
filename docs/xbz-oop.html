@@ -200,8 +200,8 @@
             <div class="content"><div class='highlight'><pre>      ee = e.dup
       ee[<span class="symbol">:id</span>] = e[<span class="symbol">:id</span>].downcase
       ee[<span class="symbol">:page_title</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:unit</span>] }</span> <span class="subst">#{e[<span class="symbol">:title</span>]}</span>"</span>
-      ee[<span class="symbol">:book</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>_book_0"</span>
-      ee[<span class="symbol">:quiz</span>] = <span class="string">"<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>_quiz_0"</span>
+      ee[<span class="symbol">:book</span>] = <span class="string">"<span class="subst">#{ ee[<span class="symbol">:id</span>] }</span>_book_0"</span>
+      ee[<span class="symbol">:quiz</span>] = <span class="string">"<span class="subst">#{ ee[<span class="symbol">:id</span>] }</span>_quiz_0"</span>
       [<span class="symbol">:game</span>, <span class="symbol">:story</span>, <span class="symbol">:song</span>, <span class="symbol">:tz</span>].each { |s| ee[s] = e[s].sub(<span class="regexp">/\.flv$/</span>, <span class="string">''</span>) }
       <span class="keyword">yield</span> ee
     <span class="keyword">end</span>
@@ -266,7 +266,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">copy_asset</span></span>
-  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'_output'</span>, <span class="symbol">verbose:</span> <span class="keyword">true</span>
+  <span class="constant">FileUtils</span>.cp_r <span class="string">'views/.'</span>, <span class="string">'output'</span>, <span class="symbol">verbose:</span> <span class="keyword">true</span>
 <span class="keyword">end</span></pre></div></div>
             
         </li>
@@ -287,23 +287,11 @@
 
   xbz_tpl = bind <span class="string">'views/xbz-eruby.html'</span>
   v.each_xbz <span class="keyword">do</span> |e|
-    html = xbz_tpl.call e</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-14">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>p &quot;write _output/html/#{ e[:id] }.html &quot;</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>    <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>.html"</span>, html)
+    html = xbz_tpl.call e
+    p <span class="string">"write output/html/<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>.html "</span>
+    <span class="constant">File</span>.write(<span class="string">"output/html/<span class="subst">#{ e[<span class="symbol">:id</span>] }</span>.html"</span>, html)
   <span class="keyword">end</span>
+  copy_asset
 <span class="keyword">end</span>
 
 <span class="function"><span class="keyword">def</span> <span class="title">games</span></span>
@@ -311,24 +299,12 @@
   game_tpl = bind <span class="string">'views/video-eruby.html'</span>
   <span class="string">%w(game story song tz)</span>.each <span class="keyword">do</span> |name|
     v.send(name.intern).each <span class="keyword">do</span> |e|
-      html = game_tpl.call e</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <p>p &quot;write _output/html/#{ e[:filename] }.html &quot;</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>      <span class="constant">File</span>.write(<span class="string">"_output/html/<span class="subst">#{ e[<span class="symbol">:filename</span>] }</span>.html"</span>, html)
+      html = game_tpl.call e
+      p <span class="string">"write output/html/<span class="subst">#{ e[<span class="symbol">:filename</span>] }</span>.html "</span>
+      <span class="constant">File</span>.write(<span class="string">"output/html/<span class="subst">#{ e[<span class="symbol">:filename</span>] }</span>.html"</span>, html)
     <span class="keyword">end</span>
   <span class="keyword">end</span>
+  copy_asset
 <span class="keyword">end</span></pre></div></div>
             
         </li>
