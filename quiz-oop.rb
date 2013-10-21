@@ -70,7 +70,7 @@ end
 
 # views目录后的点 '.' 表示复制该目录下所有内容，但不创建该目录
 def copy_asset
-  FileUtils.cp_r 'views/.', '_output', verbose: true
+  FileUtils.cp_r 'views/.', 'output', verbose: true
 end
 
 # ## 干活
@@ -79,8 +79,8 @@ def quiz
   tpl = bind 'views/quiz-eruby.html'
   q.each_quiz do |e|
     quiz_html = tpl.call e
-    p "生成 _output/html/#{ e[:unit_id] }_quiz_#{ e[:idx] }.html "
-    File.write("_output/html/#{ e[:unit_id] }_quiz_#{ e[:idx] }.html", quiz_html)
+    p "生成 output/html/#{ e[:unit_id] }_quiz_#{ e[:idx] }.html "
+    File.write("output/html/#{ e[:unit_id] }_quiz_#{ e[:idx] }.html", quiz_html)
   end
   copy_asset
 end

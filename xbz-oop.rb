@@ -86,7 +86,7 @@ end
 
 # views目录后的点 '.' 表示复制该目录下所有内容，但不创建该目录
 def copy_asset
-  FileUtils.cp_r 'views/.', '_output', verbose: true
+  FileUtils.cp_r 'views/.', 'output', verbose: true
 end
 
 # ## main
@@ -96,9 +96,10 @@ def xbz
   xbz_tpl = bind 'views/xbz-eruby.html'
   v.each_xbz do |e|
     html = xbz_tpl.call e
-    # p "write _output/html/#{ e[:id] }.html "
-    File.write("_output/html/#{ e[:id] }.html", html)
+    p "write output/html/#{ e[:id] }.html "
+    File.write("output/html/#{ e[:id] }.html", html)
   end
+  copy_asset
 end
 
 def games
@@ -107,8 +108,9 @@ def games
   %w(game story song tz).each do |name|
     v.send(name.intern).each do |e|
       html = game_tpl.call e
-      # p "write _output/html/#{ e[:filename] }.html "
-      File.write("_output/html/#{ e[:filename] }.html", html)
+      p "write output/html/#{ e[:filename] }.html "
+      File.write("output/html/#{ e[:filename] }.html", html)
     end
   end
+  copy_asset
 end
