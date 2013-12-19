@@ -57,7 +57,7 @@ def gen_xbz_book_html(path)
 end
 
 # ## 干活
-def xbz_ebok
+def xbz_ebook
   path = 'output/book'
   p "输入文件是#{ path }"
   gen_xbz_book_html(path)

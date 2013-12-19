@@ -1,5 +1,6 @@
 require_relative 'xbz-oop.rb'
 require_relative 'quiz-oop.rb'
+require_relative 'xbz-ebook.rb'
 
 # ## a timer
 def time(&block)
@@ -27,7 +28,7 @@ task :gen do
 end
 
 desc "generate xbz-ebook"
-task :gen_ebook do
+task :ebook do
   time { xbz_ebook }
 end
 
