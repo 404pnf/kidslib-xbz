@@ -50,15 +50,15 @@ def gen_xbz_book_html(path)
       input = File.read('views/xbzebook-eruby.html')
       eruby = Erubis::Eruby.new(input)    # create Eruby object
       book_html =  eruby.result(binding) # get result
-      p "_output/html/#{basename}_#{idx}.html"
-      File.write("_output/html/#{basename}_#{idx}.html", book_html)
+      p "output/html/#{basename}_#{idx}.html"
+      File.write("output/html/#{basename}_#{idx}.html", book_html)
     end
   end
 end
 
 # ## 干活
-if __FILE__ == $PROGRAM_NAME
-  path = ARGV[0] || 'output/book'
+def xbz_ebok
+  path = 'output/book'
   p "输入文件是#{ path }"
   gen_xbz_book_html(path)
 end

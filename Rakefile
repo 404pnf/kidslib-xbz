@@ -26,6 +26,11 @@ task :gen do
   copy_asset
 end
 
+desc "generate xbz-ebook"
+task :gen_ebook do
+  time { xbz_ebook }
+end
+
 desc "deploy"
 task :deploy do
   system("rsync -avz output/* wxkj:/var/www/ilearning/xbz/")
