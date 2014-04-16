@@ -34,7 +34,7 @@ end
 
 desc "deploy"
 task :deploy do
-  system("rsync -avz output/* wxkj:/var/www/ilearning/xbz/")
+  system("rsync -avz output/* tufu:/var/www/kidslib.fltrp.com/asset/xbz/")
   puts "\n\n同步到服务器了"
 end
 
