@@ -76,7 +76,6 @@ class Xbz
       end
     end
   end
-
 end
 
 # 这里用了 closure 啊 :)
