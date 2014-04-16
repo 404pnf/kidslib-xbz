@@ -3,7 +3,6 @@ require 'csv'
 require 'fileutils'
 require 'erubis'
 
-
 # ## 说明
 # 新标准的图书每页是一个jpg，并且有对应的mp3。它们统一放在某文件夹中。
 #
@@ -14,34 +13,38 @@ require 'erubis'
 # ----
 
 # ## 主函数
-# TODO FIXME
+# TODO: make it shorter
+# FIXME: make it shorter
 #
 # 写得很不好。拘泥于过程。需要修改
-3
 # ----
 def gen_xbz_book_html(path)
   # get mp3 and jpg tuples
   #
   # [["3b_u9_2.jpg", "3b_u9_2.mp3"], ["3b_u9_3.jpg", "3b_u9_3.mp3"]]
-  f = Dir.chdir(path) {
-        Dir['*.jpg'].sort.zip Dir['*.mp3'].sort
-
-      } # Dir.chdir path {} 在path中执行{}中命令但不切换目录
+  f = Dir.chdir(path) { Dir['*.jpg'].sort.zip Dir['*.mp3'].sort }
   p "共有图书 #{ f.size } 本"
 
-  # 书名是文件名的前5个字符(0..4)。
-  # 用它作为键，构建所有图书的hash
+  # 开始认为书名是前5个字符
+  # 大错特错
+  # 书名可能是 1a_u12 也就是前6个字符，或者更多，太坑爹了 ！！
+  # a.map { |e| e.split(/(_)/) }
+  # => [["3b", "_", "u9", "_", "3.jpg"], ["3b", "_", "u11", "_", "31.jpg"]]
+  def getbookid(str)
+    str.split(/(_)/)[0..2].join.to_sym
+  end
+  # 用书名作为键，构建所有图书的hash
   h = Hash.new { |hash, key| hash[key] = [] }
   f.each_with_object(h) do |(jpg, mp3), o|
-    bookid = jpg.slice(0..4).to_sym
-    o[bookid] << [jpg, mp3]
+    o[getbookid(jpg)] << [jpg, mp3]
   end
+  # p h
 
   # 先看看这本书一共有几页, page.size 。
   #
   # 再根据当前页面来决定是否有上一页和下一页。
   h.each do |unit, pages|
-    len = pages.size
+    # len = pages.size
     pages.each_with_index do |(jpg, mp3), idx|
       basename = "#{ unit.downcase }_book"
       prev_link = idx == 0 ? nil : "#{basename}_#{ idx - 1}.html"
@@ -50,7 +53,7 @@ def gen_xbz_book_html(path)
       input = File.read('views/xbzebook-eruby.html')
       eruby = Erubis::Eruby.new(input)    # create Eruby object
       book_html =  eruby.result(binding) # get result
-      p "output/html/#{basename}_#{idx}.html"
+      # p "output/html/#{basename}_#{idx}.html"
       File.write("output/html/#{basename}_#{idx}.html", book_html)
     end
   end
