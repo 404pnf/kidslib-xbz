@@ -24,6 +24,16 @@
               </a>
             
               
+              <a class="source" href="xbz-ebook.html">
+                xbz-ebook.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-oop-ebook.html">
+                xbz-oop-ebook.rb
+              </a>
+            
+              
               <a class="source" href="xbz-oop.html">
                 xbz-oop.rb
               </a>
@@ -57,10 +67,10 @@
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2>使用方法</h2>
+              <h2 id="-">使用方法</h2>
 <p>命令行运行 rake 查看。</p>
 <hr>
 
@@ -72,13 +82,13 @@
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h2>csv format</h2>
+              <h2 id="csv-format">csv format</h2>
 <p>&quot;id&quot;,&quot;nid&quot;,&quot;game&quot;,&quot;sotry&quot;,&quot;song&quot;,&quot;tz&quot;,&quot;title&quot;,&quot;unit&quot;</p>
-<pre><code>&quot;1A_U1&quot;,&quot;99&quot;,&quot; xbz1au1_game.flv&quot;,&quot; xbz1au1_story.flv&quot;,&quot; xbz1au1_song.flv&quot;,&quot; xbz1au1_tz.flv&quot;,&quot;Hello!&quot;,&quot;Unit 1&quot;</code></pre>
-<p>每一个flv文件和mp3文件都会生成单独的html页面。
+<pre><code>&quot;1A_U1&quot;,&quot;99&quot;,&quot; xbz1au1_game.flv&quot;,&quot; xbz1au1_story.flv&quot;,&quot; xbz1au1_song.flv&quot;,&quot; xbz1au1_tz.flv&quot;,&quot;Hello!&quot;,&quot;Unit 1&quot;
+</code></pre><p>每一个flv文件和mp3文件都会生成单独的html页面。
 这些页面使用 video-eruby.html 模版。</p>
 <p>同时，每条记录会生成一个聚合页面有链接到各个单独html页面。
 这个页面使用 xbz-eruby.html 模版</p>
@@ -92,16 +102,16 @@
         <li id="section-4">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <h2>主函数。</h2>
-<h2>使用方法</h2>
+              <h2 id="-">主函数。</h2>
+<h2 id="-">使用方法</h2>
 <ol>
 <li>输入的csv文件写死在脚本中了。为了能够方便使用rake生成部署</li>
 <li>rake 查看可执行任务</li>
 </ol>
-<h2>用途</h2>
+<h2 id="-">用途</h2>
 <ol>
 <li>从csv每条记录生成对应的xbz聚合页面html</li>
 <li>从csv每条记录生成对应的4个xbz课程内容页面html</li>
@@ -116,10 +126,10 @@
         <li id="section-5">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <h2>需要库</h2>
+              <h2 id="-">需要库</h2>
 <p>为了方便让有ruby但没有gem的环境使用，尽量都使用标准库中的东西。</p>
 
             </div>
@@ -147,10 +157,10 @@
         <li id="section-7">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <h2>主程序</h2>
+              <h2 id="-">主程序</h2>
 <ol>
 <li>erubis中的@var 名就是csv的header对应的值或者在类里面准备的值</li>
 <li>有些记录有前后空白，需要strip掉</li>
@@ -232,7 +242,6 @@
       <span class="keyword">end</span>
     <span class="keyword">end</span>
   <span class="keyword">end</span>
-
 <span class="keyword">end</span></pre></div></div>
             
         </li>
@@ -275,10 +284,10 @@
         <li id="section-13">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <h2>main</h2>
+              <h2 id="main">main</h2>
 
             </div>
             

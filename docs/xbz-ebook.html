@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>xbz-ebook.rb</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="quiz-oop.html">
+                quiz-oop.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-ebook.html">
+                xbz-ebook.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-oop-ebook.html">
+                xbz-oop-ebook.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-oop.html">
+                xbz-oop.rb
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>xbz-ebook.rb</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="keyword">require</span> <span class="string">'pp'</span>
+<span class="keyword">require</span> <span class="string">'csv'</span>
+<span class="keyword">require</span> <span class="string">'fileutils'</span>
+<span class="keyword">require</span> <span class="string">'erubis'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="-">说明</h2>
+<p>新标准的图书每页是一个jpg，并且有对应的mp3。它们统一放在某文件夹中。</p>
+<p>我们去遍历那个文件夹，根据文件名称确定书名，并把同一本书的jpg和mp3收集在一起</p>
+<p>之后我们生成可翻页的图书，每页都会自动播放对应的mp3。实现方式看erubis模版。</p>
+<hr>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h2 id="-">主函数</h2>
+<p>TODO: make it shorter
+FIXME: make it shorter</p>
+<h2 id="-">写得很不好。拘泥于过程。需要修改</h2>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">gen_xbz_book_html</span><span class="params">(path)</span></span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>get mp3 and jpg tuples</p>
+<p>[[&quot;3b_u9_2.jpg&quot;, &quot;3b_u9_2.mp3&quot;], [&quot;3b_u9_3.jpg&quot;, &quot;3b_u9_3.mp3&quot;]]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  f = <span class="constant">Dir</span>.chdir(path) { <span class="constant">Dir</span>[<span class="string">'*.jpg'</span>].sort.zip <span class="constant">Dir</span>[<span class="string">'*.mp3'</span>].sort }
+  p <span class="string">"共有图书 <span class="subst">#{ f.size }</span> 本"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>开始认为书名是前5个字符
+大错特错
+书名可能是 1a<em>u12 也就是前6个字符，或者更多，太坑爹了 ！！
+a.map { |e| e.split(/(</em>)/) }
+=&gt; [[&quot;3b&quot;, &quot;<em>&quot;, &quot;u9&quot;, &quot;</em>&quot;, &quot;3.jpg&quot;], [&quot;3b&quot;, &quot;<em>&quot;, &quot;u11&quot;, &quot;</em>&quot;, &quot;31.jpg&quot;]]</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="function"><span class="keyword">def</span> <span class="title">getbookid</span><span class="params">(str)</span></span>
+    str.split(<span class="regexp">/(_)/</span>)[<span class="number">0</span>..<span class="number">2</span>].join.to_sym
+  <span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>用书名作为键，构建所有图书的hash</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  h = <span class="constant">Hash</span>.new { |hash, key| hash[key] = [] }
+  f.each_with_object(h) <span class="keyword">do</span> |(jpg, mp3), o|
+    o[getbookid(jpg)] &lt;&lt; [jpg, mp3]
+  <span class="keyword">end</span>
+  p h</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>先看看这本书一共有几页, page.size 。</p>
+<p>再根据当前页面来决定是否有上一页和下一页。</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  h.each <span class="keyword">do</span> |unit, pages|</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>len = pages.size</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    pages.each_with_index <span class="keyword">do</span> |(jpg, mp3), idx|
+      basename = <span class="string">"<span class="subst">#{ unit.downcase }</span>_book"</span>
+      prev_link = idx == <span class="number">0</span> ? <span class="keyword">nil</span> <span class="symbol">:</span> <span class="string">"<span class="subst">#{basename}</span>_<span class="subst">#{ idx - <span class="number">1</span>}</span>.html"</span>
+      next_link = idx == <span class="number">2</span> ? <span class="keyword">nil</span> <span class="symbol">:</span> <span class="string">"<span class="subst">#{basename}</span>_<span class="subst">#{ idx + <span class="number">1</span>}</span>.html"</span>
+
+      input = <span class="constant">File</span>.read(<span class="string">'views/xbzebook-eruby.html'</span>)
+      eruby = <span class="constant">Erubis::Eruby</span>.new(input)    <span class="comment"># create Eruby object</span>
+      book_html =  eruby.result(binding) <span class="comment"># get result</span>
+      p <span class="string">"output/html/<span class="subst">#{basename}</span>_<span class="subst">#{idx}</span>.html"</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>File.write(&quot;output/html/#{basename}_#{idx}.html&quot;, book_html)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2 id="-">干活</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="function"><span class="keyword">def</span> <span class="title">xbz_ebook</span></span>
+  path = <span class="string">'output/book'</span>
+  p <span class="string">"输入文件是<span class="subst">#{ path }</span>"</span>
+  gen_xbz_book_html(path)
+<span class="keyword">end</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

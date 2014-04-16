@@ -24,6 +24,16 @@
               </a>
             
               
+              <a class="source" href="xbz-ebook.html">
+                xbz-ebook.rb
+              </a>
+            
+              
+              <a class="source" href="xbz-oop-ebook.html">
+                xbz-oop-ebook.rb
+              </a>
+            
+              
               <a class="source" href="xbz-oop.html">
                 xbz-oop.rb
               </a>
@@ -62,14 +72,14 @@
         <li id="section-2">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <h2>CSV的格式</h2>
+              <h2 id="csv-">CSV的格式</h2>
 <p>每条记录有一个图片，一个音频，但答案选项有4个，用英文逗号分开。第一个出现的答案是正确答案。</p>
 <pre><code>&quot;title&quot;,&quot;nid&quot;,&quot;pic&quot;,&quot;mp3&quot;,&quot;answer&quot;,&quot;unit_id&quot;
-&quot;2BU2_six&quot;,&quot;315&quot;,&quot;2BU2_six.jpg&quot;,&quot; 2BU2_six.mp3&quot;,&quot;six, three, seven, five&quot;,&quot;2B_U2&quot;</code></pre>
-<hr>
+&quot;2BU2_six&quot;,&quot;315&quot;,&quot;2BU2_six.jpg&quot;,&quot; 2BU2_six.mp3&quot;,&quot;six, three, seven, five&quot;,&quot;2B_U2&quot;
+</code></pre><hr>
 
             </div>
             
@@ -79,11 +89,11 @@
         <li id="section-3">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <h2>主函数</h2>
-<h3>难点</h3>
+              <h2 id="-">主函数</h2>
+<h3 id="-">难点</h3>
 <ol>
 <li>先把对应相同单元的quiz按文件名命名规则收集在一起</li>
 <li>每课可以对应多个quiz。因此quiz页面需要分页，并计算是否有上一页和下一页。</li>
@@ -104,7 +114,8 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              
+              <p>类是为了封装</p>
+
             </div>
             
             <div class="content"><div class='highlight'><pre><span class="class"><span class="keyword">class</span> <span class="title">Quiz</span></span>
@@ -153,8 +164,8 @@
               </div>
               <p>k is 1b_u11&quot;
 v is</p>
-<pre><code>   [{:title=&gt;&quot;1BU11_blocks&quot;, :nid=&gt;&quot;390&quot;, :pic=&gt;&quot;1BU11_blocks.jpg&quot;, :mp3=&gt;&quot;1BU11_blocks.mp3&quot;, :answer=&gt;&quot;blocks,_puppet,_doll,_car&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_doll&quot;, :nid=&gt;&quot;391&quot;, :pic=&gt;&quot;1BU11_doll.jpg&quot;, :mp3=&gt;&quot;1BU11_doll.mp3&quot;, :answer=&gt;&quot;doll,_puppet,_car,_girl&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_friend&quot;, :nid=&gt;&quot;392&quot;, :pic=&gt;&quot;1BU11_friend.jpg&quot;, :mp3=&gt;&quot;1BU11_friend.mp3&quot;, :answer=&gt;&quot;friend,_boy,_girl,_child&quot;, :unit_id=&gt;&quot;1b_u11&quot;}]</code></pre>
-
+<pre><code>   [{:title=&gt;&quot;1BU11_blocks&quot;, :nid=&gt;&quot;390&quot;, :pic=&gt;&quot;1BU11_blocks.jpg&quot;, :mp3=&gt;&quot;1BU11_blocks.mp3&quot;, :answer=&gt;&quot;blocks,_puppet,_doll,_car&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_doll&quot;, :nid=&gt;&quot;391&quot;, :pic=&gt;&quot;1BU11_doll.jpg&quot;, :mp3=&gt;&quot;1BU11_doll.mp3&quot;, :answer=&gt;&quot;doll,_puppet,_car,_girl&quot;, :unit_id=&gt;&quot;1b_u11&quot;}, {:title=&gt;&quot;1BU11_friend&quot;, :nid=&gt;&quot;392&quot;, :pic=&gt;&quot;1BU11_friend.jpg&quot;, :mp3=&gt;&quot;1BU11_friend.mp3&quot;, :answer=&gt;&quot;friend,_boy,_girl,_child&quot;, :unit_id=&gt;&quot;1b_u11&quot;}]
+</code></pre>
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="function"><span class="keyword">def</span> <span class="title">each_quiz</span></span>
@@ -212,10 +223,10 @@ v is</p>
         <li id="section-9">
             <div class="annotation">
               
-              <div class="pilwrap for-h2">
+              <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <h2>干活</h2>
+              <h2 id="-">干活</h2>
 
             </div>
             
