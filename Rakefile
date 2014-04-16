@@ -1,6 +1,7 @@
 require_relative 'xbz-oop.rb'
 require_relative 'quiz-oop.rb'
-require_relative 'xbz-ebook.rb'
+# require_relative 'xbz-ebook.rb'
+require_relative 'ebook-oop.rb'
 
 # ## a timer
 def time(&block)
