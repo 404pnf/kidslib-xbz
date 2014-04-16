@@ -21,6 +21,7 @@ require 'pp'
 # 1. 正确选项和错误选项对应的css class不同
 # ----
 
+# 类是为了封装
 class Quiz
   def initialize(file)
     aoh = CSV.table(file, converters: nil).map(&:to_hash)
